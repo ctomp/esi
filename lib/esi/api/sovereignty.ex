@@ -14,7 +14,7 @@ defmodule ESI.API.Sovereignty do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_sovereignty_map`
-  - `path` -- `/sovereignty/map/`
+  - `path` -- `/v1/sovereignty/map/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Sovereignty/get_sovereignty_map)
 
@@ -23,7 +23,7 @@ defmodule ESI.API.Sovereignty do
   def map() do
     %ESI.Request{
       verb: :get,
-      path: "/sovereignty/map/",
+      path: "/v1/sovereignty/map/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -47,7 +47,7 @@ defmodule ESI.API.Sovereignty do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_sovereignty_campaigns`
-  - `path` -- `/sovereignty/campaigns/`
+  - `path` -- `/v1/sovereignty/campaigns/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Sovereignty/get_sovereignty_campaigns)
 
@@ -56,7 +56,7 @@ defmodule ESI.API.Sovereignty do
   def campaigns() do
     %ESI.Request{
       verb: :get,
-      path: "/sovereignty/campaigns/",
+      path: "/v1/sovereignty/campaigns/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -80,7 +80,7 @@ defmodule ESI.API.Sovereignty do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_sovereignty_structures`
-  - `path` -- `/sovereignty/structures/`
+  - `path` -- `/v1/sovereignty/structures/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Sovereignty/get_sovereignty_structures)
 
@@ -89,7 +89,7 @@ defmodule ESI.API.Sovereignty do
   def structures() do
     %ESI.Request{
       verb: :get,
-      path: "/sovereignty/structures/",
+      path: "/v1/sovereignty/structures/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }

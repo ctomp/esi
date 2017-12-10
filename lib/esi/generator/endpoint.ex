@@ -3,11 +3,13 @@ defmodule ESI.Generator.Endpoint do
 
   @enforce_keys [:source, :components]
   defstruct [
+    :version,
     :source,
     :components
   ]
 
   @type t :: %__MODULE__{
+    version: String.t,
     source: String.t,
     components: [component]
   }
@@ -20,9 +22,11 @@ defmodule ESI.Generator.Endpoint do
   """
   @spec new(source :: String.t) :: t
   def new(source) do
+    source_parts = Regex.split(~r{^/v\d+}, source, [include_captures: true, trim: true])
     %__MODULE__{
+      version: List.first(source_parts),
       source: source,
-      components: parse_components(source),
+      components: parse_components(List.last(source_parts)),
     }
   end
 
@@ -128,7 +132,7 @@ defmodule ESI.Generator.Endpoint do
         value
     end)
     |> Path.join
-    ~S<"/> <> inside <> ~S</">
+    ~S<"> <> endpoint.version <> "/" <> inside <> ~S</">
   end
 
   @spec ends_as?(endpoint :: t, structure :: [component_kind]) :: boolean

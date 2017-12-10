@@ -15,7 +15,7 @@ defmodule ESI.API.Status do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_status`
-  - `path` -- `/status/`
+  - `path` -- `/v1/status/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Status/get_status)
 
@@ -24,7 +24,7 @@ defmodule ESI.API.Status do
   def status() do
     %ESI.Request{
       verb: :get,
-      path: "/status/",
+      path: "/v1/status/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }

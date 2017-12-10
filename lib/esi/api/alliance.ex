@@ -1,5 +1,34 @@
 defmodule ESI.API.Alliance do
 
+  @doc """
+  List all active player alliances.
+
+  ## Response Example
+
+  List of Alliance IDs:
+
+      [99000001, 99000002]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_alliances`
+  - `path` -- `/v1/alliances/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances)
+
+  """
+  @spec alliances() :: ESI.Request.t
+  def alliances() do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/alliances/",
+      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
+
+    }
+  end
+
   @typedoc """
   Options for [`Alliance.names/1`](#names/1).
 
@@ -23,7 +52,7 @@ defmodule ESI.API.Alliance do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_alliances_names`
-  - `path` -- `/alliances/names/`
+  - `path` -- `/v1/alliances/names/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances_names)
 
@@ -32,36 +61,37 @@ defmodule ESI.API.Alliance do
   def names(opts \\ []) do
     %ESI.Request{
       verb: :get,
-      path: "/alliances/names/",
+      path: "/v1/alliances/names/",
       opts_schema: %{alliance_ids: {:query, :required}, datasource: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
 
   @doc """
-  List all current member corporations of an alliance.
+  Public information about an alliance.
 
   ## Response Example
 
-  List of corporation IDs:
+  Public data about an alliance:
 
-      [98000001]
+      %{"alliance_name" => "C C P Alliance", "date_founded" => "2016-06-26T21:00:00Z",
+        "executor_corp" => 98356193, "ticker" => "<C C P>"}
 
   ## Swagger Source
 
   This function was generated from the following Swagger operation:
 
-  - `operationId` -- `get_alliances_alliance_id_corporations`
-  - `path` -- `/alliances/{alliance_id}/corporations/`
+  - `operationId` -- `get_alliances_alliance_id`
+  - `path` -- `/v2/alliances/{alliance_id}/`
 
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances_alliance_id_corporations)
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances_alliance_id)
 
   """
-  @spec corporations(alliance_id :: integer) :: ESI.Request.t
-  def corporations(alliance_id) do
+  @spec alliance(alliance_id :: integer) :: ESI.Request.t
+  def alliance(alliance_id) do
     %ESI.Request{
       verb: :get,
-      path: "/alliances/#{alliance_id}/corporations/",
+      path: "/v2/alliances/#{alliance_id}/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -82,7 +112,7 @@ defmodule ESI.API.Alliance do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_alliances_alliance_id_icons`
-  - `path` -- `/alliances/{alliance_id}/icons/`
+  - `path` -- `/v1/alliances/{alliance_id}/icons/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances_alliance_id_icons)
 
@@ -91,66 +121,7 @@ defmodule ESI.API.Alliance do
   def icons(alliance_id) do
     %ESI.Request{
       verb: :get,
-      path: "/alliances/#{alliance_id}/icons/",
-      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
-
-    }
-  end
-
-  @doc """
-  Public information about an alliance.
-
-  ## Response Example
-
-  Public data about an alliance:
-
-      %{"alliance_name" => "C C P Alliance", "date_founded" => "2016-06-26T21:00:00Z",
-        "executor_corp" => 98356193, "ticker" => "<C C P>"}
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_alliances_alliance_id`
-  - `path` -- `/alliances/{alliance_id}/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances_alliance_id)
-
-  """
-  @spec alliance(alliance_id :: integer) :: ESI.Request.t
-  def alliance(alliance_id) do
-    %ESI.Request{
-      verb: :get,
-      path: "/alliances/#{alliance_id}/",
-      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
-
-    }
-  end
-
-  @doc """
-  List all active player alliances.
-
-  ## Response Example
-
-  List of Alliance IDs:
-
-      [99000001, 99000002]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_alliances`
-  - `path` -- `/alliances/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances)
-
-  """
-  @spec alliances() :: ESI.Request.t
-  def alliances() do
-    %ESI.Request{
-      verb: :get,
-      path: "/alliances/",
+      path: "/v1/alliances/#{alliance_id}/icons/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -174,14 +145,14 @@ defmodule ESI.API.Alliance do
   A list of contacts:
 
       [%{"contact_id" => 2112625428, "contact_type" => "character",
-         "standing" => 10.0}]
+         "standing" => 9.9}]
 
   ## Swagger Source
 
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_alliances_alliance_id_contacts`
-  - `path` -- `/alliances/{alliance_id}/contacts/`
+  - `path` -- `/v1/alliances/{alliance_id}/contacts/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Contacts/get_alliances_alliance_id_contacts)
 
@@ -190,9 +161,38 @@ defmodule ESI.API.Alliance do
   def contacts(alliance_id, opts \\ []) do
     %ESI.Request{
       verb: :get,
-      path: "/alliances/#{alliance_id}/contacts/",
+      path: "/v1/alliances/#{alliance_id}/contacts/",
       opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
+    }
+  end
+
+  @doc """
+  List all current member corporations of an alliance.
+
+  ## Response Example
+
+  List of corporation IDs:
+
+      [98000001]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_alliances_alliance_id_corporations`
+  - `path` -- `/v1/alliances/{alliance_id}/corporations/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances_alliance_id_corporations)
+
+  """
+  @spec corporations(alliance_id :: integer) :: ESI.Request.t
+  def corporations(alliance_id) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/alliances/#{alliance_id}/corporations/",
+      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
+
     }
   end
 end

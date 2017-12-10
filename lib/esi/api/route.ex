@@ -25,7 +25,7 @@ defmodule ESI.API.Route do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_route_origin_destination`
-  - `path` -- `/route/{origin}/{destination}/`
+  - `path` -- `/v1/route/{origin}/{destination}/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Routes/get_route_origin_destination)
 
@@ -34,7 +34,7 @@ defmodule ESI.API.Route do
   def route(origin, destination, opts \\ []) do
     %ESI.Request{
       verb: :get,
-      path: "/route/#{origin}/#{destination}/",
+      path: "/v1/route/#{origin}/#{destination}/",
       opts_schema: %{avoid: {:query, :optional}, connections: {:query, :optional}, datasource: {:query, :optional}, flag: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }

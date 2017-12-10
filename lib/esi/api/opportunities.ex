@@ -1,6 +1,35 @@
 defmodule ESI.API.Opportunities do
 
   @doc """
+  Return a list of opportunities tasks.
+
+  ## Response Example
+
+  A list of opportunities task ids:
+
+      [1, 2, 3, 4]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_opportunities_tasks`
+  - `path` -- `/v1/opportunities/tasks/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Opportunities/get_opportunities_tasks)
+
+  """
+  @spec tasks() :: ESI.Request.t
+  def tasks() do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/opportunities/tasks/",
+      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
+
+    }
+  end
+
+  @doc """
   Return a list of opportunities groups.
 
   ## Response Example
@@ -14,7 +43,7 @@ defmodule ESI.API.Opportunities do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_opportunities_groups`
-  - `path` -- `/opportunities/groups/`
+  - `path` -- `/v1/opportunities/groups/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Opportunities/get_opportunities_groups)
 
@@ -23,7 +52,7 @@ defmodule ESI.API.Opportunities do
   def groups() do
     %ESI.Request{
       verb: :get,
-      path: "/opportunities/groups/",
+      path: "/v1/opportunities/groups/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -45,7 +74,7 @@ defmodule ESI.API.Opportunities do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_opportunities_tasks_task_id`
-  - `path` -- `/opportunities/tasks/{task_id}/`
+  - `path` -- `/v1/opportunities/tasks/{task_id}/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Opportunities/get_opportunities_tasks_task_id)
 
@@ -54,36 +83,7 @@ defmodule ESI.API.Opportunities do
   def task(task_id) do
     %ESI.Request{
       verb: :get,
-      path: "/opportunities/tasks/#{task_id}/",
-      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
-
-    }
-  end
-
-  @doc """
-  Return a list of opportunities tasks.
-
-  ## Response Example
-
-  A list of opportunities task ids:
-
-      [1, 2, 3, 4]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_opportunities_tasks`
-  - `path` -- `/opportunities/tasks/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Opportunities/get_opportunities_tasks)
-
-  """
-  @spec tasks() :: ESI.Request.t
-  def tasks() do
-    %ESI.Request{
-      verb: :get,
-      path: "/opportunities/tasks/",
+      path: "/v1/opportunities/tasks/#{task_id}/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -115,7 +115,7 @@ defmodule ESI.API.Opportunities do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_opportunities_groups_group_id`
-  - `path` -- `/opportunities/groups/{group_id}/`
+  - `path` -- `/v1/opportunities/groups/{group_id}/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Opportunities/get_opportunities_groups_group_id)
 
@@ -124,7 +124,7 @@ defmodule ESI.API.Opportunities do
   def group(group_id, opts \\ []) do
     %ESI.Request{
       verb: :get,
-      path: "/opportunities/groups/#{group_id}/",
+      path: "/v1/opportunities/groups/#{group_id}/",
       opts_schema: %{datasource: {:query, :optional}, language: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }

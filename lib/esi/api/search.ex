@@ -28,7 +28,7 @@ defmodule ESI.API.Search do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_search`
-  - `path` -- `/search/`
+  - `path` -- `/v1/search/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Search/get_search)
 
@@ -37,7 +37,7 @@ defmodule ESI.API.Search do
   def search(opts \\ []) do
     %ESI.Request{
       verb: :get,
-      path: "/search/",
+      path: "/v1/search/",
       opts_schema: %{categories: {:query, :required}, datasource: {:query, :optional}, language: {:query, :optional}, search: {:query, :required}, strict: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }

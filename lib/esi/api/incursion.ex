@@ -9,7 +9,7 @@ defmodule ESI.API.Incursion do
 
       [%{"constellation_id" => 20000607, "faction_id" => 500019, "has_boss" => true,
          "infested_solar_systems" => [30004148, 30004149, 30004150, 30004151,
-          30004152, 30004153, 30004154], "influence" => 1.0,
+          30004152, 30004153, 30004154], "influence" => 0.9,
          "staging_solar_system_id" => 30004154, "state" => "mobilizing",
          "type" => "Incursion"}]
 
@@ -18,7 +18,7 @@ defmodule ESI.API.Incursion do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_incursions`
-  - `path` -- `/incursions/`
+  - `path` -- `/v1/incursions/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Incursions/get_incursions)
 
@@ -27,7 +27,7 @@ defmodule ESI.API.Incursion do
   def incursions() do
     %ESI.Request{
       verb: :get,
-      path: "/incursions/",
+      path: "/v1/incursions/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }

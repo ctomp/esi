@@ -18,7 +18,7 @@ defmodule ESI.API.Loyalty do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_loyalty_stores_corporation_id_offers`
-  - `path` -- `/loyalty/stores/{corporation_id}/offers/`
+  - `path` -- `/v1/loyalty/stores/{corporation_id}/offers/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Loyalty/get_loyalty_stores_corporation_id_offers)
 
@@ -27,7 +27,7 @@ defmodule ESI.API.Loyalty do
   def offers(corporation_id) do
     %ESI.Request{
       verb: :get,
-      path: "/loyalty/stores/#{corporation_id}/offers/",
+      path: "/v1/loyalty/stores/#{corporation_id}/offers/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }

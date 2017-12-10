@@ -16,7 +16,7 @@ defmodule ESI.API.Insurance do
 
   A list of insurance levels for all ship types:
 
-      [%{"levels" => [%{"cost" => 10.0, "name" => "Basic", "payout" => 20.0}],
+      [%{"levels" => [%{"cost" => 10.01, "name" => "Basic", "payout" => 20.01}],
          "type_id" => 1}]
 
   ## Swagger Source
@@ -24,7 +24,7 @@ defmodule ESI.API.Insurance do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_insurance_prices`
-  - `path` -- `/insurance/prices/`
+  - `path` -- `/v1/insurance/prices/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Insurance/get_insurance_prices)
 
@@ -33,7 +33,7 @@ defmodule ESI.API.Insurance do
   def prices(opts \\ []) do
     %ESI.Request{
       verb: :get,
-      path: "/insurance/prices/",
+      path: "/v1/insurance/prices/",
       opts_schema: %{datasource: {:query, :optional}, language: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }

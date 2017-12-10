@@ -14,7 +14,7 @@ defmodule ESI.API.Dogma do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_dogma_effects`
-  - `path` -- `/dogma/effects/`
+  - `path` -- `/v1/dogma/effects/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Dogma/get_dogma_effects)
 
@@ -23,68 +23,7 @@ defmodule ESI.API.Dogma do
   def effects() do
     %ESI.Request{
       verb: :get,
-      path: "/dogma/effects/",
-      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
-
-    }
-  end
-
-  @doc """
-  Get information on a dogma effect.
-
-  ## Response Example
-
-  Information about a dogma effect:
-
-      %{"description" => "Requires a high power slot.",
-        "display_name" => "High power", "effect_category" => 0, "effect_id" => 12,
-        "icon_id" => 293, "name" => "hiPower", "post_expression" => 131,
-        "pre_expression" => 131, "published" => true}
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_dogma_effects_effect_id`
-  - `path` -- `/dogma/effects/{effect_id}/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Dogma/get_dogma_effects_effect_id)
-
-  """
-  @spec effect(effect_id :: integer) :: ESI.Request.t
-  def effect(effect_id) do
-    %ESI.Request{
-      verb: :get,
-      path: "/dogma/effects/#{effect_id}/",
-      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
-
-    }
-  end
-
-  @doc """
-  Get a list of dogma attribute ids.
-
-  ## Response Example
-
-  A list of dogma attribute ids:
-
-      [1, 2, 3]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_dogma_attributes`
-  - `path` -- `/dogma/attributes/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Dogma/get_dogma_attributes)
-
-  """
-  @spec attributes() :: ESI.Request.t
-  def attributes() do
-    %ESI.Request{
-      verb: :get,
-      path: "/dogma/attributes/",
+      path: "/v1/dogma/effects/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -108,7 +47,7 @@ defmodule ESI.API.Dogma do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_dogma_attributes_attribute_id`
-  - `path` -- `/dogma/attributes/{attribute_id}/`
+  - `path` -- `/v1/dogma/attributes/{attribute_id}/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Dogma/get_dogma_attributes_attribute_id)
 
@@ -117,7 +56,68 @@ defmodule ESI.API.Dogma do
   def attribute(attribute_id) do
     %ESI.Request{
       verb: :get,
-      path: "/dogma/attributes/#{attribute_id}/",
+      path: "/v1/dogma/attributes/#{attribute_id}/",
+      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
+
+    }
+  end
+
+  @doc """
+  Get information on a dogma effect.
+
+  ## Response Example
+
+  Information about a dogma effect:
+
+      %{"description" => "Requires a high power slot.",
+        "display_name" => "High power", "effect_category" => 0, "effect_id" => 12,
+        "icon_id" => 293, "name" => "hiPower", "post_expression" => 131,
+        "pre_expression" => 131, "published" => true}
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_dogma_effects_effect_id`
+  - `path` -- `/v2/dogma/effects/{effect_id}/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Dogma/get_dogma_effects_effect_id)
+
+  """
+  @spec effect(effect_id :: integer) :: ESI.Request.t
+  def effect(effect_id) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v2/dogma/effects/#{effect_id}/",
+      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
+
+    }
+  end
+
+  @doc """
+  Get a list of dogma attribute ids.
+
+  ## Response Example
+
+  A list of dogma attribute ids:
+
+      [1, 2, 3]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_dogma_attributes`
+  - `path` -- `/v1/dogma/attributes/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Dogma/get_dogma_attributes)
+
+  """
+  @spec attributes() :: ESI.Request.t
+  def attributes() do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/dogma/attributes/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }

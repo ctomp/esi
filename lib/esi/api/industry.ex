@@ -15,7 +15,7 @@ defmodule ESI.API.Industry do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_industry_facilities`
-  - `path` -- `/industry/facilities/`
+  - `path` -- `/v1/industry/facilities/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Industry/get_industry_facilities)
 
@@ -24,7 +24,7 @@ defmodule ESI.API.Industry do
   def facilities() do
     %ESI.Request{
       verb: :get,
-      path: "/industry/facilities/",
+      path: "/v1/industry/facilities/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -45,7 +45,7 @@ defmodule ESI.API.Industry do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_industry_systems`
-  - `path` -- `/industry/systems/`
+  - `path` -- `/v1/industry/systems/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Industry/get_industry_systems)
 
@@ -54,7 +54,7 @@ defmodule ESI.API.Industry do
   def systems() do
     %ESI.Request{
       verb: :get,
-      path: "/industry/systems/",
+      path: "/v1/industry/systems/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }

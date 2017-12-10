@@ -24,7 +24,7 @@ defmodule ESI.API.Killmail do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_killmails_killmail_id_killmail_hash`
-  - `path` -- `/killmails/{killmail_id}/{killmail_hash}/`
+  - `path` -- `/v1/killmails/{killmail_id}/{killmail_hash}/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Killmails/get_killmails_killmail_id_killmail_hash)
 
@@ -33,7 +33,7 @@ defmodule ESI.API.Killmail do
   def killmail(killmail_id, killmail_hash) do
     %ESI.Request{
       verb: :get,
-      path: "/killmails/#{killmail_id}/#{killmail_hash}/",
+      path: "/v1/killmails/#{killmail_id}/#{killmail_hash}/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }

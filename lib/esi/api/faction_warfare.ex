@@ -1,6 +1,66 @@
 defmodule ESI.API.FactionWarfare do
 
   @doc """
+  Data about which NPC factions are at war.
+
+  ## Response Example
+
+  A list of NPC factions at war:
+
+      [%{"against_id" => 500002, "faction_id" => 500001}]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_fw_wars`
+  - `path` -- `/v1/fw/wars/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Faction Warfare/get_fw_wars)
+
+  """
+  @spec wars() :: ESI.Request.t
+  def wars() do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/fw/wars/",
+      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
+
+    }
+  end
+
+  @doc """
+  An overview of the current ownership of faction warfare solar systems.
+
+  ## Response Example
+
+  All faction war solar systems:
+
+      [%{"contested" => true, "occupier_faction_id" => 500001,
+         "owner_faction_id" => 500001, "solar_system_id" => 30002096,
+         "victory_points" => 60, "victory_points_threshold" => 3000}]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_fw_systems`
+  - `path` -- `/v1/fw/systems/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Faction Warfare/get_fw_systems)
+
+  """
+  @spec systems() :: ESI.Request.t
+  def systems() do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/fw/systems/",
+      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
+
+    }
+  end
+
+  @doc """
   Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday..
 
   ## Response Example
@@ -27,7 +87,7 @@ defmodule ESI.API.FactionWarfare do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_fw_leaderboards_characters`
-  - `path` -- `/fw/leaderboards/characters/`
+  - `path` -- `/v1/fw/leaderboards/characters/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Faction Warfare/get_fw_leaderboards_characters)
 
@@ -36,36 +96,48 @@ defmodule ESI.API.FactionWarfare do
   def leaderboards_characters() do
     %ESI.Request{
       verb: :get,
-      path: "/fw/leaderboards/characters/",
+      path: "/v1/fw/leaderboards/characters/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
   end
 
   @doc """
-  Data about which NPC factions are at war.
+  Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday..
 
   ## Response Example
 
-  A list of NPC factions at war:
+  Corporation leaderboard of kills and victory points within faction warfare.:
 
-      [%{"against_id" => 500002, "faction_id" => 500001}]
+      %{"kills" => %{"active_total" => [%{"amount" => 832273, "faction_id" => 500004},
+           %{"amount" => 687915, "faction_id" => 500001}],
+          "last_week" => [%{"amount" => 730, "faction_id" => 500001},
+           %{"amount" => 671, "faction_id" => 500004}],
+          "yesterday" => [%{"amount" => 100, "faction_id" => 500001},
+           %{"amount" => 50, "faction_id" => 500004}]},
+        "victory_points" => %{"active_total" => [%{"amount" => 53130500,
+             "faction_id" => 500001},
+           %{"amount" => 50964263, "faction_id" => 500004}],
+          "last_week" => [%{"amount" => 97360, "faction_id" => 500001},
+           %{"amount" => 84980, "faction_id" => 500004}],
+          "yesterday" => [%{"amount" => 5000, "faction_id" => 500002},
+           %{"amount" => 3500, "faction_id" => 500003}]}}
 
   ## Swagger Source
 
   This function was generated from the following Swagger operation:
 
-  - `operationId` -- `get_fw_wars`
-  - `path` -- `/fw/wars/`
+  - `operationId` -- `get_fw_leaderboards`
+  - `path` -- `/v1/fw/leaderboards/`
 
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Faction Warfare/get_fw_wars)
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Faction Warfare/get_fw_leaderboards)
 
   """
-  @spec wars() :: ESI.Request.t
-  def wars() do
+  @spec leaderboards() :: ESI.Request.t
+  def leaderboards() do
     %ESI.Request{
       verb: :get,
-      path: "/fw/wars/",
+      path: "/v1/fw/leaderboards/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -89,7 +161,7 @@ defmodule ESI.API.FactionWarfare do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_fw_stats`
-  - `path` -- `/fw/stats/`
+  - `path` -- `/v1/fw/stats/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Faction Warfare/get_fw_stats)
 
@@ -98,7 +170,7 @@ defmodule ESI.API.FactionWarfare do
   def stats() do
     %ESI.Request{
       verb: :get,
-      path: "/fw/stats/",
+      path: "/v1/fw/stats/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }
@@ -131,7 +203,7 @@ defmodule ESI.API.FactionWarfare do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_fw_leaderboards_corporations`
-  - `path` -- `/fw/leaderboards/corporations/`
+  - `path` -- `/v1/fw/leaderboards/corporations/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Faction Warfare/get_fw_leaderboards_corporations)
 
@@ -140,79 +212,7 @@ defmodule ESI.API.FactionWarfare do
   def leaderboards_corporations() do
     %ESI.Request{
       verb: :get,
-      path: "/fw/leaderboards/corporations/",
-      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
-
-    }
-  end
-
-  @doc """
-  Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday..
-
-  ## Response Example
-
-  Corporation leaderboard of kills and victory points within faction warfare.:
-
-      %{"kills" => %{"active_total" => [%{"amount" => 832273, "faction_id" => 500004},
-           %{"amount" => 687915, "faction_id" => 500001}],
-          "last_week" => [%{"amount" => 730, "faction_id" => 500001},
-           %{"amount" => 671, "faction_id" => 500004}],
-          "yesterday" => [%{"amount" => 100, "faction_id" => 500001},
-           %{"amount" => 50, "faction_id" => 500004}]},
-        "victory_points" => %{"active_total" => [%{"amount" => 53130500,
-             "faction_id" => 500001},
-           %{"amount" => 50964263, "faction_id" => 500004}],
-          "last_week" => [%{"amount" => 97360, "faction_id" => 500001},
-           %{"amount" => 84980, "faction_id" => 500004}],
-          "yesterday" => [%{"amount" => 5000, "faction_id" => 500002},
-           %{"amount" => 3500, "faction_id" => 500003}]}}
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_fw_leaderboards`
-  - `path` -- `/fw/leaderboards/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Faction Warfare/get_fw_leaderboards)
-
-  """
-  @spec leaderboards() :: ESI.Request.t
-  def leaderboards() do
-    %ESI.Request{
-      verb: :get,
-      path: "/fw/leaderboards/",
-      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
-
-    }
-  end
-
-  @doc """
-  An overview of the current ownership of faction warfare solar systems.
-
-  ## Response Example
-
-  All faction war solar systems:
-
-      [%{"contested" => true, "occupier_faction_id" => 500001,
-         "owner_faction_id" => 500001, "solar_system_id" => 30002096,
-         "victory_points" => 60, "victory_points_threshold" => 3000}]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_fw_systems`
-  - `path` -- `/fw/systems/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Faction Warfare/get_fw_systems)
-
-  """
-  @spec systems() :: ESI.Request.t
-  def systems() do
-    %ESI.Request{
-      verb: :get,
-      path: "/fw/systems/",
+      path: "/v1/fw/leaderboards/corporations/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }

@@ -1,44 +1,6 @@
 defmodule ESI.API.War do
 
   @typedoc """
-  Options for [`War.wars/1`](#wars/1).
-
-  - `:max_war_id` -- Only return wars with ID smaller than this.
-  """
-  @type wars_opts :: [wars_opt]
-  @type wars_opt :: {:max_war_id, nil | integer}
-
-
-  @doc """
-  Return a list of wars.
-
-  ## Response Example
-
-  A list of war IDs, in decending order by war_id.:
-
-      [3, 2, 1]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_wars`
-  - `path` -- `/wars/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Wars/get_wars)
-
-  """
-  @spec wars(opts :: wars_opts) :: ESI.Request.t
-  def wars(opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/wars/",
-      opts_schema: %{datasource: {:query, :optional}, max_war_id: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
   Options for [`War.killmails/2`](#killmails/2).
 
   - `:page` (DEFAULT: `1`) -- Which page of results to return
@@ -64,7 +26,7 @@ defmodule ESI.API.War do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_wars_war_id_killmails`
-  - `path` -- `/wars/{war_id}/killmails/`
+  - `path` -- `/v1/wars/{war_id}/killmails/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Wars/get_wars_war_id_killmails)
 
@@ -73,7 +35,7 @@ defmodule ESI.API.War do
   def killmails(war_id, opts \\ []) do
     %ESI.Request{
       verb: :get,
-      path: "/wars/#{war_id}/killmails/",
+      path: "/v1/wars/#{war_id}/killmails/",
       opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
@@ -97,7 +59,7 @@ defmodule ESI.API.War do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_wars_war_id`
-  - `path` -- `/wars/{war_id}/`
+  - `path` -- `/v1/wars/{war_id}/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Wars/get_wars_war_id)
 
@@ -106,9 +68,47 @@ defmodule ESI.API.War do
   def war(war_id) do
     %ESI.Request{
       verb: :get,
-      path: "/wars/#{war_id}/",
+      path: "/v1/wars/#{war_id}/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
+    }
+  end
+
+  @typedoc """
+  Options for [`War.wars/1`](#wars/1).
+
+  - `:max_war_id` -- Only return wars with ID smaller than this.
+  """
+  @type wars_opts :: [wars_opt]
+  @type wars_opt :: {:max_war_id, nil | integer}
+
+
+  @doc """
+  Return a list of wars.
+
+  ## Response Example
+
+  A list of war IDs, in decending order by war_id.:
+
+      [3, 2, 1]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_wars`
+  - `path` -- `/v1/wars/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Wars/get_wars)
+
+  """
+  @spec wars(opts :: wars_opts) :: ESI.Request.t
+  def wars(opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/wars/",
+      opts_schema: %{datasource: {:query, :optional}, max_war_id: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
     }
   end
 end
