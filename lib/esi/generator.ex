@@ -11,7 +11,7 @@ defmodule ESI.Generator do
     |> Enum.flat_map(fn {path, requests} ->
       requests
       |> Enum.map(fn {verb, info} ->
-        Function.new(path, String.to_atom(verb), info)
+        Function.new(swagger["basePath"], path, String.to_atom(verb), info)
       end)
     end)
     |> Enum.group_by(&(&1.module_name))

@@ -20,11 +20,12 @@ defmodule ESI.Generator.Endpoint do
   @doc """
   Create an endpoint from a string
   """
-  @spec new(source :: String.t) :: t
-  def new(source) do
-    source_parts = Regex.split(~r{^/v\d+}, source, [include_captures: true, trim: true])
+  @spec new(basePath :: String.t, source :: String.t) :: t
+  def new(basePath, source) do
+    source_parts = Regex.split(~r{(?<=\/)v\d+}, source, [include_captures: true, parts: 3])
+    version = if (length(source_parts) == 1), do: basePath, else: "/" <> Enum.at(source_parts, 1)
     %__MODULE__{
-      version: List.first(source_parts),
+      version: version,
       source: source,
       components: parse_components(List.last(source_parts)),
     }

@@ -42,7 +42,7 @@ defmodule ESI.Request do
     %{req | opts: Map.merge(req.opts, Map.new(opts))}
   end
 
-  @base "https://esi.tech.ccp.is/latest"
+  @base "https://esi.tech.ccp.is"
   @doc """
   Run a request.
   """

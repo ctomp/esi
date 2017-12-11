@@ -48,8 +48,8 @@ defmodule ESI.Generator.Function do
     arity: pos_integer,
   }
 
-  def new(path, verb, info) do
-    endpoint = Endpoint.new(path)
+  def new(basePath, path, verb, info) do
+    endpoint = Endpoint.new(basePath, path)
     %__MODULE__{
       endpoint: endpoint,
       operation: info["operationId"],
