@@ -9,7 +9,7 @@ defmodule ESI.API.Search do
   - `:strict` (DEFAULT: `false`) -- Whether the search should be a strict match
   """
   @type search_opts :: [search_opt]
-  @type search_opt :: {:categories, [:agent | :alliance | :character | :constellation | :corporation | :faction | :inventorytype | :region | :solarsystem | :station | :wormhole]} | {:language, nil | :de | :"en-us" | :fr | :ja | :ru | :zh} | {:search, String.t} | {:strict, nil | boolean}
+  @type search_opt :: {:categories, [:agent | :alliance | :character | :constellation | :corporation | :faction | :inventory_type | :region | :solar_system | :station]} | {:language, nil | :de | :"en-us" | :fr | :ja | :ru | :zh} | {:search, String.t} | {:strict, nil | boolean}
 
 
   @doc """
@@ -19,16 +19,18 @@ defmodule ESI.API.Search do
 
   A list of search results:
 
-      %{"solarsystem" => [30002510],
+      %{
+        "solar_system" => [30002510],
         "station" => [60004588, 60004594, 60005725, 60009106, 60012721, 60012724,
-         60012727]}
+         60012727]
+      }
 
   ## Swagger Source
 
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_search`
-  - `path` -- `/v1/search/`
+  - `path` -- `/v2/search/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Search/get_search)
 
@@ -37,7 +39,7 @@ defmodule ESI.API.Search do
   def search(opts \\ []) do
     %ESI.Request{
       verb: :get,
-      path: "/v1/search/",
+      path: "/v2/search/",
       opts_schema: %{categories: {:query, :required}, datasource: {:query, :optional}, language: {:query, :optional}, search: {:query, :required}, strict: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }

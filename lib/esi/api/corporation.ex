@@ -1,45 +1,42 @@
 defmodule ESI.API.Corporation do
 
-  @typedoc """
-  Options for [`Corporation.structures/2`](#structures/2).
-
-  - `:language` (DEFAULT: `:"en-us"`) -- Language to use in the response
-  - `:page` (DEFAULT: `1`) -- Which page of results to return
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type structures_opts :: [structures_opt]
-  @type structures_opt :: {:language, nil | :de | :"en-us" | :fr | :ja | :ru | :zh} | {:page, nil | integer} | {:token, nil | String.t}
-
-
   @doc """
-  Get a list of corporation structures.
+  Public information about a corporation.
 
   ## Response Example
 
-  List of corporation structures' information:
+  Public information about a corporation:
 
-      [%{"corporation_id" => 667531913, "current_vul" => [%{"day" => 1, "hour" => 2}],
-         "next_vul" => [%{"day" => 3, "hour" => 4}], "profile_id" => 11237,
-         "structure_id" => 1021975535893, "system_id" => 30004763,
-         "type_id" => 35833}]
+      %{
+        "alliance_id" => 434243723,
+        "ceo_id" => 180548812,
+        "creator_id" => 180548812,
+        "date_founded" => "2004-11-28T16:42:51Z",
+        "description" => "This is a corporation description, it's basically just a string",
+        "member_count" => 656,
+        "name" => "C C P",
+        "tax_rate" => 0.256,
+        "ticker" => "-CCP-",
+        "url" => "http://www.eveonline.com"
+      }
 
   ## Swagger Source
 
   This function was generated from the following Swagger operation:
 
-  - `operationId` -- `get_corporations_corporation_id_structures`
-  - `path` -- `/v1/corporations/{corporation_id}/structures/`
+  - `operationId` -- `get_corporations_corporation_id`
+  - `path` -- `/v4/corporations/{corporation_id}/`
 
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Corporation/get_corporations_corporation_id_structures)
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Corporation/get_corporations_corporation_id)
 
   """
-  @spec structures(corporation_id :: integer, opts :: structures_opts) :: ESI.Request.t
-  def structures(corporation_id, opts \\ []) do
+  @spec corporation(corporation_id :: integer) :: ESI.Request.t
+  def corporation(corporation_id) do
     %ESI.Request{
       verb: :get,
-      path: "/v1/corporations/#{corporation_id}/structures/",
-      opts_schema: %{datasource: {:query, :optional}, language: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
+      path: "/v4/corporations/#{corporation_id}/",
+      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
+
     }
   end
 
@@ -60,9 +57,15 @@ defmodule ESI.API.Corporation do
 
   A list of medals:
 
-      [%{"created_at" => "2017-10-10T14:00:00Z", "creator_id" => 46578,
-         "description" => "An Awesome Medal", "medal_id" => 123,
-         "title" => "Awesome Medal"}]
+      [
+        %{
+          "created_at" => "2017-10-10T14:00:00Z",
+          "creator_id" => 46578,
+          "description" => "An Awesome Medal",
+          "medal_id" => 123,
+          "title" => "Awesome Medal"
+        }
+      ]
 
   ## Swagger Source
 
@@ -85,45 +88,6 @@ defmodule ESI.API.Corporation do
   end
 
   @typedoc """
-  Options for [`Corporation.create_asset_locations/2`](#create_asset_locations/2).
-
-  - `:item_ids` (REQUIRED) -- A list of item ids
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type create_asset_locations_opts :: [create_asset_locations_opt]
-  @type create_asset_locations_opt :: {:item_ids, [nil | integer]} | {:token, nil | String.t}
-
-
-  @doc """
-  Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0).
-
-  ## Response Example
-
-  List of asset locations:
-
-      [%{"item_id" => 12345, "x" => 1.2, "y" => 2.3, "z" => -3.4}]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `post_corporations_corporation_id_assets_locations`
-  - `path` -- `/v1/corporations/{corporation_id}/assets/locations/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Assets/post_corporations_corporation_id_assets_locations)
-
-  """
-  @spec create_asset_locations(corporation_id :: integer, opts :: create_asset_locations_opts) :: ESI.Request.t
-  def create_asset_locations(corporation_id, opts \\ []) do
-    %ESI.Request{
-      verb: :post,
-      path: "/v1/corporations/#{corporation_id}/assets/locations/",
-      opts_schema: %{datasource: {:query, :optional}, item_ids: {:body, :required}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
   Options for [`Corporation.container_logs/2`](#container_logs/2).
 
   - `:page` (DEFAULT: `1`) -- Which page of results to return
@@ -140,19 +104,40 @@ defmodule ESI.API.Corporation do
 
   List of corporation ALSC logs:
 
-      [%{"action" => "set_password", "character_id" => 2112625428,
-         "container_id" => 1000000012279, "container_type_id" => 17365,
-         "location_flag" => "CorpSAG1", "location_id" => 1000000012278,
-         "logged_at" => "2017-10-10T14:00:00Z", "password_type" => "general"},
-       %{"action" => "lock", "character_id" => 2112625428,
-         "container_id" => 1000000012279, "container_type_id" => 17365,
-         "location_flag" => "CorpSAG1", "location_id" => 1000000012278,
-         "logged_at" => "2017-10-11T12:04:33Z", "quantity" => 30, "type_id" => 1230},
-       %{"action" => "configure", "character_id" => 2112625428,
-         "container_id" => 1000000012279, "container_type_id" => 17365,
-         "location_flag" => "CorpSAG2", "location_id" => 1000000012278,
-         "logged_at" => "2017-10-11T12:06:29Z", "new_config_bitmask" => 31,
-         "old_config_bitmask" => 23}]
+      [
+        %{
+          "action" => "set_password",
+          "character_id" => 2112625428,
+          "container_id" => 1000000012279,
+          "container_type_id" => 17365,
+          "location_flag" => "CorpSAG1",
+          "location_id" => 1000000012278,
+          "logged_at" => "2017-10-10T14:00:00Z",
+          "password_type" => "general"
+        },
+        %{
+          "action" => "lock",
+          "character_id" => 2112625428,
+          "container_id" => 1000000012279,
+          "container_type_id" => 17365,
+          "location_flag" => "CorpSAG1",
+          "location_id" => 1000000012278,
+          "logged_at" => "2017-10-11T12:04:33Z",
+          "quantity" => 30,
+          "type_id" => 1230
+        },
+        %{
+          "action" => "configure",
+          "character_id" => 2112625428,
+          "container_id" => 1000000012279,
+          "container_type_id" => 17365,
+          "location_flag" => "CorpSAG2",
+          "location_id" => 1000000012278,
+          "logged_at" => "2017-10-11T12:06:29Z",
+          "new_config_bitmask" => 31,
+          "old_config_bitmask" => 23
+        }
+      ]
 
   ## Swagger Source
 
@@ -185,20 +170,34 @@ defmodule ESI.API.Corporation do
 
 
   @doc """
-  Return the current member list of a corporation, the token's character need to be a member of the corporation..
+  Return the current shareholders of a corporation..
 
   ## Response Example
 
-  List of member character IDs:
+  List of shareholders:
 
-      [%{"share_count" => 580, "shareholder_id" => 98000001,
-         "shareholder_type" => "corporation"},
-       %{"share_count" => 20, "shareholder_id" => 2112000003,
-         "shareholder_type" => "character"},
-       %{"share_count" => 300, "shareholder_id" => 2112000004,
-         "shareholder_type" => "character"},
-       %{"share_count" => 100, "shareholder_id" => 2112000001,
-         "shareholder_type" => "character"}]
+      [
+        %{
+          "share_count" => 580,
+          "shareholder_id" => 98000001,
+          "shareholder_type" => "corporation"
+        },
+        %{
+          "share_count" => 20,
+          "shareholder_id" => 2112000003,
+          "shareholder_type" => "character"
+        },
+        %{
+          "share_count" => 300,
+          "shareholder_id" => 2112000004,
+          "shareholder_type" => "character"
+        },
+        %{
+          "share_count" => 100,
+          "shareholder_id" => 2112000001,
+          "shareholder_type" => "character"
+        }
+      ]
 
   ## Swagger Source
 
@@ -237,9 +236,19 @@ defmodule ESI.API.Corporation do
 
   Wallet transactions:
 
-      [%{"client_id" => 54321, "date" => "2016-10-24T09:00:00Z", "is_buy" => true,
-         "journal_ref_id" => 67890, "location_id" => 60014719, "quantity" => 1,
-         "transaction_id" => 1234567890, "type_id" => 587, "unit_price" => 1}]
+      [
+        %{
+          "client_id" => 54321,
+          "date" => "2016-10-24T09:00:00Z",
+          "is_buy" => true,
+          "journal_ref_id" => 67890,
+          "location_id" => 60014719,
+          "quantity" => 1,
+          "transaction_id" => 1234567890,
+          "type_id" => 587,
+          "unit_price" => 1
+        }
+      ]
 
   ## Swagger Source
 
@@ -261,47 +270,6 @@ defmodule ESI.API.Corporation do
     }
   end
 
-  @typedoc """
-  Options for [`Corporation.assets/2`](#assets/2).
-
-  - `:page` (DEFAULT: `1`) -- Which page of results to return
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type assets_opts :: [assets_opt]
-  @type assets_opt :: {:page, nil | integer} | {:token, nil | String.t}
-
-
-  @doc """
-  Return a list of the corporation assets.
-
-  ## Response Example
-
-  A list of assets:
-
-      [%{"is_singleton" => true, "item_id" => 1000000016835,
-         "location_flag" => "Hangar", "location_id" => 60002959,
-         "location_type" => "station", "type_id" => 3516}]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_corporations_corporation_id_assets`
-  - `path` -- `/v1/corporations/{corporation_id}/assets/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Assets/get_corporations_corporation_id_assets)
-
-  """
-  @spec assets(corporation_id :: integer, opts :: assets_opts) :: ESI.Request.t
-  def assets(corporation_id, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v1/corporations/#{corporation_id}/assets/",
-      opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
   @doc """
   Get the icon urls for a corporation.
 
@@ -309,9 +277,11 @@ defmodule ESI.API.Corporation do
 
   Urls for icons for the given corporation id and server:
 
-      %{"px128x128" => "https://imageserver.eveonline.com/Corporation/1000010_128.png",
+      %{
+        "px128x128" => "https://imageserver.eveonline.com/Corporation/1000010_128.png",
         "px256x256" => "https://imageserver.eveonline.com/Corporation/1000010_256.png",
-        "px64x64" => "https://imageserver.eveonline.com/Corporation/1000010_64.png"}
+        "px64x64" => "https://imageserver.eveonline.com/Corporation/1000010_64.png"
+      }
 
   ## Swagger Source
 
@@ -344,17 +314,31 @@ defmodule ESI.API.Corporation do
 
 
   @doc """
-  List market orders placed on behalf of a corporation.
+  List open market orders placed on behalf of a corporation.
 
   ## Response Example
 
-  A list of market orders:
+  A list of open market orders:
 
-      [%{"duration" => 30, "escrow" => 45.6, "is_buy_order" => true,
-         "issued" => "2016-09-03T05:12:25Z", "location_id" => 456, "min_volume" => 1,
-         "order_id" => 123, "price" => 33.3, "range" => "station", "region_id" => 123,
-         "state" => "open", "type_id" => 456, "volume_remain" => 4422,
-         "volume_total" => 123456, "wallet_division" => 1}]
+      [
+        %{
+          "duration" => 30,
+          "escrow" => 45.6,
+          "is_buy_order" => true,
+          "issued" => "2016-09-03T05:12:25Z",
+          "location_id" => 456,
+          "min_volume" => 1,
+          "order_id" => 123,
+          "price" => 33.3,
+          "range" => "station",
+          "region_id" => 123,
+          "state" => "open",
+          "type_id" => 456,
+          "volume_remain" => 4422,
+          "volume_total" => 123456,
+          "wallet_division" => 1
+        }
+      ]
 
   ## Swagger Source
 
@@ -393,10 +377,16 @@ defmodule ESI.API.Corporation do
 
   A list of killmail IDs and hashes:
 
-      [%{"killmail_hash" => "8eef5e8fb6b88fe3407c489df33822b2e3b57a5e",
-         "killmail_id" => 2},
-       %{"killmail_hash" => "b41ccb498ece33d64019f64c0db392aa3aa701fb",
-         "killmail_id" => 1}]
+      [
+        %{
+          "killmail_hash" => "8eef5e8fb6b88fe3407c489df33822b2e3b57a5e",
+          "killmail_id" => 2
+        },
+        %{
+          "killmail_hash" => "b41ccb498ece33d64019f64c0db392aa3aa701fb",
+          "killmail_id" => 1
+        }
+      ]
 
   ## Swagger Source
 
@@ -434,10 +424,15 @@ defmodule ESI.API.Corporation do
 
   A list of chunk timers:
 
-      [%{"chunk_arrival_time" => "2017-10-17T11:00:59Z",
-         "extraction_start_time" => "2017-10-11T10:37:04Z", "moon_id" => 40307229,
-         "natural_decay_time" => "2017-10-17T14:00:59Z",
-         "structure_id" => 1000000010579}]
+      [
+        %{
+          "chunk_arrival_time" => "2017-10-17T11:00:59Z",
+          "extraction_start_time" => "2017-10-11T10:37:04Z",
+          "moon_id" => 40307229,
+          "natural_decay_time" => "2017-10-17T14:00:59Z",
+          "structure_id" => 1000000010579
+        }
+      ]
 
   ## Swagger Source
 
@@ -455,6 +450,55 @@ defmodule ESI.API.Corporation do
       verb: :get,
       path: "/v1/corporation/#{corporation_id}/mining/extractions/",
       opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
+  Options for [`Corporation.assets/2`](#assets/2).
+
+  - `:page` (DEFAULT: `1`) -- Which page of results to return
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type assets_opts :: [assets_opt]
+  @type assets_opt :: {:page, nil | integer} | {:token, nil | String.t}
+
+
+  @doc """
+  Return a list of the corporation assets.
+
+  ## Response Example
+
+  A list of assets:
+
+      [
+        %{
+          "is_singleton" => true,
+          "item_id" => 1000000016835,
+          "location_flag" => "Hangar",
+          "location_id" => 60002959,
+          "location_type" => "station",
+          "quantity" => 1,
+          "type_id" => 3516
+        }
+      ]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_corporations_corporation_id_assets`
+  - `path` -- `/v2/corporations/{corporation_id}/assets/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Assets/get_corporations_corporation_id_assets)
+
+  """
+  @spec assets(corporation_id :: integer, opts :: assets_opts) :: ESI.Request.t
+  def assets(corporation_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v2/corporations/#{corporation_id}/assets/",
+      opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -514,8 +558,15 @@ defmodule ESI.API.Corporation do
 
   A list of items in this contract:
 
-      [%{"is_included" => true, "is_singleton" => false, "quantity" => 1,
-         "record_id" => 123456, "type_id" => 587}]
+      [
+        %{
+          "is_included" => true,
+          "is_singleton" => false,
+          "quantity" => 1,
+          "record_id" => 123456,
+          "type_id" => 587
+        }
+      ]
 
   ## Swagger Source
 
@@ -553,8 +604,10 @@ defmodule ESI.API.Corporation do
 
   List of corporation division names:
 
-      %{"hangar" => [%{"division" => 1, "name" => "Awesome Hangar 1"}],
-        "wallet" => [%{"division" => 1, "name" => "Rich Wallet 1"}]}
+      %{
+        "hangar" => [%{"division" => 1, "name" => "Awesome Hangar 1"}],
+        "wallet" => [%{"division" => 1, "name" => "Rich Wallet 1"}]
+      }
 
   ## Swagger Source
 
@@ -630,14 +683,24 @@ defmodule ESI.API.Corporation do
 
   List of member character IDs:
 
-      [%{"character_id" => 2112000001, "location_id" => 30003657,
-         "logoff_date" => "2017-08-03T14:31:16Z",
-         "logon_date" => "2017-08-03T14:22:03Z", "ship_type_id" => 22464,
-         "start_date" => "2017-07-10T14:46:00Z"},
-       %{"character_id" => 2112000002, "location_id" => 30003657,
-         "logoff_date" => "2017-07-25T11:07:40Z",
-         "logon_date" => "2017-07-25T10:54:00Z", "ship_type_id" => 670,
-         "start_date" => "2017-07-10T14:50:00Z"}]
+      [
+        %{
+          "character_id" => 2112000001,
+          "location_id" => 30003657,
+          "logoff_date" => "2017-08-03T14:31:16Z",
+          "logon_date" => "2017-08-03T14:22:03Z",
+          "ship_type_id" => 22464,
+          "start_date" => "2017-07-10T14:46:00Z"
+        },
+        %{
+          "character_id" => 2112000002,
+          "location_id" => 30003657,
+          "logoff_date" => "2017-07-25T11:07:40Z",
+          "logon_date" => "2017-07-25T10:54:00Z",
+          "ship_type_id" => 670,
+          "start_date" => "2017-07-10T14:50:00Z"
+        }
+      ]
 
   ## Swagger Source
 
@@ -705,9 +768,15 @@ defmodule ESI.API.Corporation do
 
   Alliance history for the given corporation:
 
-      [%{"alliance_id" => 99000006, "is_deleted" => true, "record_id" => 23,
-         "start_date" => "2016-10-25T14:46:00Z"},
-       %{"record_id" => 1, "start_date" => "2015-07-06T20:56:00Z"}]
+      [
+        %{
+          "alliance_id" => 99000006,
+          "is_deleted" => true,
+          "record_id" => 23,
+          "start_date" => "2016-10-25T14:46:00Z"
+        },
+        %{"record_id" => 1, "start_date" => "2015-07-06T20:56:00Z"}
+      ]
 
   ## Swagger Source
 
@@ -769,6 +838,45 @@ defmodule ESI.API.Corporation do
   end
 
   @typedoc """
+  Options for [`Corporation.create_asset_locations/2`](#create_asset_locations/2).
+
+  - `:item_ids` (REQUIRED) -- A list of item ids
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type create_asset_locations_opts :: [create_asset_locations_opt]
+  @type create_asset_locations_opt :: {:item_ids, [nil | integer]} | {:token, nil | String.t}
+
+
+  @doc """
+  Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0).
+
+  ## Response Example
+
+  List of asset locations:
+
+      [%{"item_id" => 12345, "position" => %{"x" => 1.2, "y" => 2.3, "z" => -3.4}}]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `post_corporations_corporation_id_assets_locations`
+  - `path` -- `/v2/corporations/{corporation_id}/assets/locations/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Assets/post_corporations_corporation_id_assets_locations)
+
+  """
+  @spec create_asset_locations(corporation_id :: integer, opts :: create_asset_locations_opts) :: ESI.Request.t
+  def create_asset_locations(corporation_id, opts \\ []) do
+    %ESI.Request{
+      verb: :post,
+      path: "/v2/corporations/#{corporation_id}/assets/locations/",
+      opts_schema: %{datasource: {:query, :optional}, item_ids: {:body, :required}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Corporation.contacts/2`](#contacts/2).
 
   - `:page` (DEFAULT: `1`) -- Which page of results to return
@@ -785,8 +893,14 @@ defmodule ESI.API.Corporation do
 
   A list of contacts:
 
-      [%{"contact_id" => 123, "contact_type" => "character", "is_watched" => true,
-         "standing" => 9.9}]
+      [
+        %{
+          "contact_id" => 123,
+          "contact_type" => "character",
+          "is_watched" => true,
+          "standing" => 9.9
+        }
+      ]
 
   ## Swagger Source
 
@@ -809,6 +923,44 @@ defmodule ESI.API.Corporation do
   end
 
   @typedoc """
+  Options for [`Corporation.members/2`](#members/2).
+
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type members_opts :: [members_opt]
+  @type members_opt :: {:token, nil | String.t}
+
+
+  @doc """
+  Return the current member list of a corporation, the token's character need to be a member of the corporation..
+
+  ## Response Example
+
+  List of member character IDs:
+
+      [90000001, 90000002]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_corporations_corporation_id_members`
+  - `path` -- `/v3/corporations/{corporation_id}/members/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Corporation/get_corporations_corporation_id_members)
+
+  """
+  @spec members(corporation_id :: integer, opts :: members_opts) :: ESI.Request.t
+  def members(corporation_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v3/corporations/#{corporation_id}/members/",
+      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Corporation.bids/3`](#bids/3).
 
   - `:page` (DEFAULT: `1`) -- Which page of results to return
@@ -825,8 +977,14 @@ defmodule ESI.API.Corporation do
 
   A list of bids:
 
-      [%{"amount" => 1.23, "bid_id" => 1, "bidder_id" => 123,
-         "date_bid" => "2017-01-01T10:10:10Z"}]
+      [
+        %{
+          "amount" => 1.23,
+          "bid_id" => 1,
+          "bidder_id" => 123,
+          "date_bid" => "2017-01-01T10:10:10Z"
+        }
+      ]
 
   ## Swagger Source
 
@@ -844,83 +1002,6 @@ defmodule ESI.API.Corporation do
       verb: :get,
       path: "/v1/corporations/#{corporation_id}/contracts/#{contract_id}/bids/",
       opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
-  Options for [`Corporation.journal/3`](#journal/3).
-
-  - `:from_id` -- Only show journal entries happened before the transaction referenced by this id
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type journal_opts :: [journal_opt]
-  @type journal_opt :: {:from_id, nil | integer} | {:token, nil | String.t}
-
-
-  @doc """
-  Retrieve corporation wallet journal.
-
-  ## Response Example
-
-  Journal entries:
-
-      [%{"date" => "2016-10-24T09:00:00Z", "ref_id" => 1234567890,
-         "ref_type" => "player_trading"}]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_corporations_corporation_id_wallets_division_journal`
-  - `path` -- `/v1/corporations/{corporation_id}/wallets/{division}/journal/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Wallet/get_corporations_corporation_id_wallets_division_journal)
-
-  """
-  @spec journal(corporation_id :: integer, division :: integer, opts :: journal_opts) :: ESI.Request.t
-  def journal(corporation_id, division, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v1/corporations/#{corporation_id}/wallets/#{division}/journal/",
-      opts_schema: %{datasource: {:query, :optional}, from_id: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
-  Options for [`Corporation.update_structure/3`](#update_structure/3).
-
-  - `:new_schedule` (REQUIRED) -- New vulnerability window schedule for the structure
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type update_structure_opts :: [update_structure_opt]
-  @type update_structure_opt :: {:new_schedule, [nil | [day: integer, hour: integer]]} | {:token, nil | String.t}
-
-
-  @doc """
-  Update the vulnerability window schedule of a corporation structure.
-
-  ## Response Example
-
-  No example available.
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `put_corporations_corporation_id_structures_structure_id`
-  - `path` -- `/v1/corporations/{corporation_id}/structures/{structure_id}/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Corporation/put_corporations_corporation_id_structures_structure_id)
-
-  """
-  @spec update_structure(corporation_id :: integer, structure_id :: integer, opts :: update_structure_opts) :: ESI.Request.t
-  def update_structure(corporation_id, structure_id, opts \\ []) do
-    %ESI.Request{
-      verb: :put,
-      path: "/v1/corporations/#{corporation_id}/structures/#{structure_id}/",
-      opts_schema: %{datasource: {:query, :optional}, new_schedule: {:body, :required}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -1002,44 +1083,6 @@ defmodule ESI.API.Corporation do
   end
 
   @typedoc """
-  Options for [`Corporation.names/1`](#names/1).
-
-  - `:corporation_ids` (REQUIRED) -- A comma separated list of corporation IDs
-  """
-  @type names_opts :: [names_opt]
-  @type names_opt :: {:corporation_ids, [integer]}
-
-
-  @doc """
-  Resolve a set of corporation IDs to corporation names.
-
-  ## Response Example
-
-  List of id/name associations:
-
-      [%{"corporation_id" => 1000171, "corporation_name" => "Republic University"}]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_corporations_names`
-  - `path` -- `/v1/corporations/names/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Corporation/get_corporations_names)
-
-  """
-  @spec names(opts :: names_opts) :: ESI.Request.t
-  def names(opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v1/corporations/names/",
-      opts_schema: %{corporation_ids: {:query, :required}, datasource: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
   Options for [`Corporation.outposts/2`](#outposts/2).
 
   - `:page` (DEFAULT: `1`) -- Which page of results to return
@@ -1081,12 +1124,11 @@ defmodule ESI.API.Corporation do
   @typedoc """
   Options for [`Corporation.starbase/3`](#starbase/3).
 
-  - `:page` (DEFAULT: `1`) -- Which page of results to return
   - `:system_id` (REQUIRED) -- The solar system this starbase (POS) is located in,
   - `:token` -- Access token to use if unable to set a header
   """
   @type starbase_opts :: [starbase_opt]
-  @type starbase_opt :: {:page, nil | integer} | {:system_id, integer} | {:token, nil | String.t}
+  @type starbase_opt :: {:system_id, integer} | {:token, nil | String.t}
 
 
   @doc """
@@ -1096,15 +1138,19 @@ defmodule ESI.API.Corporation do
 
   List of starbases (POSes):
 
-      %{"allow_alliance_members" => false, "allow_corporation_members" => true,
-        "anchor" => "config_starbase_equipment_role", "attack_if_at_war" => true,
+      %{
+        "allow_alliance_members" => false,
+        "allow_corporation_members" => true,
+        "anchor" => "config_starbase_equipment_role",
+        "attack_if_at_war" => true,
         "attack_if_other_security_status_dropping" => false,
         "fuel_bay_take" => "config_starbase_equipment_role",
         "fuel_bay_view" => "config_starbase_equipment_role",
         "offline" => "config_starbase_equipment_role",
         "online" => "config_starbase_equipment_role",
         "unanchor" => "config_starbase_equipment_role",
-        "use_alliance_standings" => false}
+        "use_alliance_standings" => false
+      }
 
   ## Swagger Source
 
@@ -1121,7 +1167,58 @@ defmodule ESI.API.Corporation do
     %ESI.Request{
       verb: :get,
       path: "/v1/corporations/#{corporation_id}/starbases/#{starbase_id}/",
-      opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, system_id: {:query, :required}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts_schema: %{datasource: {:query, :optional}, system_id: {:query, :required}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
+  Options for [`Corporation.structures/2`](#structures/2).
+
+  - `:language` (DEFAULT: `:"en-us"`) -- Language to use in the response
+  - `:page` (DEFAULT: `1`) -- Which page of results to return
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type structures_opts :: [structures_opt]
+  @type structures_opt :: {:language, nil | :de | :"en-us" | :fr | :ja | :ru | :zh} | {:page, nil | integer} | {:token, nil | String.t}
+
+
+  @doc """
+  Get a list of corporation structures. This route's version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th.
+
+  ## Response Example
+
+  List of corporation structures' information:
+
+      [
+        %{
+          "corporation_id" => 667531913,
+          "profile_id" => 11237,
+          "reinforce_hour" => 22,
+          "reinforce_weekday" => 2,
+          "state" => "shield_vulnerable",
+          "structure_id" => 1021975535893,
+          "system_id" => 30004763,
+          "type_id" => 35833
+        }
+      ]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_corporations_corporation_id_structures`
+  - `path` -- `/v2/corporations/{corporation_id}/structures/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Corporation/get_corporations_corporation_id_structures)
+
+  """
+  @spec structures(corporation_id :: integer, opts :: structures_opts) :: ESI.Request.t
+  def structures(corporation_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v2/corporations/#{corporation_id}/structures/",
+      opts_schema: %{datasource: {:query, :optional}, language: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -1143,9 +1240,16 @@ defmodule ESI.API.Corporation do
 
   List of role changes:
 
-      [%{"changed_at" => "2016-10-25T14:46:00Z", "character_id" => 12345,
-         "issuer_id" => 45678, "new_roles" => ["Station_Manager"],
-         "old_roles" => ["Diplomat"], "role_type" => "roles"}]
+      [
+        %{
+          "changed_at" => "2016-10-25T14:46:00Z",
+          "character_id" => 12345,
+          "issuer_id" => 45678,
+          "new_roles" => ["Station_Manager"],
+          "old_roles" => ["Diplomat"],
+          "role_type" => "roles"
+        }
+      ]
 
   ## Swagger Source
 
@@ -1168,6 +1272,51 @@ defmodule ESI.API.Corporation do
   end
 
   @typedoc """
+  Options for [`Corporation.journal/3`](#journal/3).
+
+  - `:from_id` -- Only show journal entries happened before the transaction referenced by this id
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type journal_opts :: [journal_opt]
+  @type journal_opt :: {:from_id, nil | integer} | {:token, nil | String.t}
+
+
+  @doc """
+  Retrieve corporation wallet journal.
+
+  ## Response Example
+
+  Journal entries:
+
+      [
+        %{
+          "date" => "2016-10-24T09:00:00Z",
+          "ref_id" => 1234567890,
+          "ref_type" => "player_trading"
+        }
+      ]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_corporations_corporation_id_wallets_division_journal`
+  - `path` -- `/v2/corporations/{corporation_id}/wallets/{division}/journal/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Wallet/get_corporations_corporation_id_wallets_division_journal)
+
+  """
+  @spec journal(corporation_id :: integer, division :: integer, opts :: journal_opts) :: ESI.Request.t
+  def journal(corporation_id, division, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v2/corporations/#{corporation_id}/wallets/#{division}/journal/",
+      opts_schema: %{datasource: {:query, :optional}, from_id: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Corporation.fw_stats/2`](#fw_stats/2).
 
   - `:token` -- Access token to use if unable to set a header
@@ -1183,11 +1332,17 @@ defmodule ESI.API.Corporation do
 
   Faction warfare statistics for a given corporation:
 
-      %{"enlisted_on" => "2017-10-17T00:00:00Z", "faction_id" => 500001,
+      %{
+        "enlisted_on" => "2017-10-17T00:00:00Z",
+        "faction_id" => 500001,
         "kills" => %{"last_week" => 893, "total" => 684350, "yesterday" => 136},
         "pilots" => 28863,
-        "victory_points" => %{"last_week" => 102640, "total" => 52658260,
-          "yesterday" => 15980}}
+        "victory_points" => %{
+          "last_week" => 102640,
+          "total" => 52658260,
+          "yesterday" => 15980
+        }
+      }
 
   ## Swagger Source
 
@@ -1254,13 +1409,15 @@ defmodule ESI.API.Corporation do
 
   List of corporation wallets:
 
-      [%{"balance" => 123.45, "division" => 1},
-       %{"balance" => 123.45, "division" => 2},
-       %{"balance" => 123.45, "division" => 3},
-       %{"balance" => 123.45, "division" => 4},
-       %{"balance" => 123.45, "division" => 5},
-       %{"balance" => 123.45, "division" => 6},
-       %{"balance" => 123.45, "division" => 7}]
+      [
+        %{"balance" => 123.45, "division" => 1},
+        %{"balance" => 123.45, "division" => 2},
+        %{"balance" => 123.45, "division" => 3},
+        %{"balance" => 123.45, "division" => 4},
+        %{"balance" => 123.45, "division" => 5},
+        %{"balance" => 123.45, "division" => 6},
+        %{"balance" => 123.45, "division" => 7}
+      ]
 
   ## Swagger Source
 
@@ -1299,9 +1456,16 @@ defmodule ESI.API.Corporation do
 
   A list of issued medals:
 
-      [%{"character_id" => 45678, "issued_at" => "2017-10-10T14:00:00Z",
-         "issuer_id" => 67890, "medal_id" => 123, "reason" => "Awesome Reason",
-         "status" => "private"}]
+      [
+        %{
+          "character_id" => 45678,
+          "issued_at" => "2017-10-10T14:00:00Z",
+          "issuer_id" => 67890,
+          "medal_id" => 123,
+          "reason" => "Awesome Reason",
+          "status" => "private"
+        }
+      ]
 
   ## Swagger Source
 
@@ -1324,77 +1488,6 @@ defmodule ESI.API.Corporation do
   end
 
   @typedoc """
-  Options for [`Corporation.members/2`](#members/2).
-
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type members_opts :: [members_opt]
-  @type members_opt :: {:token, nil | String.t}
-
-
-  @doc """
-  Read the current list of members if the calling character is a member..
-
-  ## Response Example
-
-  List of member character IDs:
-
-      [%{"character_id" => 90000001}, %{"character_id" => 90000002}]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_corporations_corporation_id_members`
-  - `path` -- `/v2/corporations/{corporation_id}/members/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Corporation/get_corporations_corporation_id_members)
-
-  """
-  @spec members(corporation_id :: integer, opts :: members_opts) :: ESI.Request.t
-  def members(corporation_id, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v2/corporations/#{corporation_id}/members/",
-      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @doc """
-  Public information about a corporation.
-
-  ## Response Example
-
-  Public data about a corporation:
-
-      %{"alliance_id" => 434243723, "ceo_id" => 180548812,
-        "corporation_description" => "This is a corporation description, it's basically just a string",
-        "corporation_name" => "C C P", "creation_date" => "2004-11-28T16:42:51Z",
-        "creator_id" => 180548812, "member_count" => 656, "tax_rate" => 0.256,
-        "ticker" => "-CCP-", "url" => "http://www.eveonline.com"}
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_corporations_corporation_id`
-  - `path` -- `/v3/corporations/{corporation_id}/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Corporation/get_corporations_corporation_id)
-
-  """
-  @spec corporation(corporation_id :: integer) :: ESI.Request.t
-  def corporation(corporation_id) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v3/corporations/#{corporation_id}/",
-      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
-
-    }
-  end
-
-  @typedoc """
   Options for [`Corporation.industry_jobs/2`](#industry_jobs/2).
 
   - `:include_completed` (DEFAULT: `false`) -- Whether retrieve completed industry jobs as well
@@ -1412,13 +1505,26 @@ defmodule ESI.API.Corporation do
 
   A list of corporation industry jobs:
 
-      [%{"activity_id" => 1, "blueprint_id" => 1015116533326,
-         "blueprint_location_id" => 60006382, "blueprint_type_id" => 2047,
-         "cost" => 118.01, "duration" => 548, "end_date" => "2014-07-19T15:56:14Z",
-         "facility_id" => 60006382, "installer_id" => 498338451,
-         "job_id" => 229136101, "licensed_runs" => 200, "location_id" => 60006382,
-         "output_location_id" => 60006382, "runs" => 1,
-         "start_date" => "2014-07-19T15:47:06Z", "status" => "active"}]
+      [
+        %{
+          "activity_id" => 1,
+          "blueprint_id" => 1015116533326,
+          "blueprint_location_id" => 60006382,
+          "blueprint_type_id" => 2047,
+          "cost" => 118.01,
+          "duration" => 548,
+          "end_date" => "2014-07-19T15:56:14Z",
+          "facility_id" => 60006382,
+          "installer_id" => 498338451,
+          "job_id" => 229136101,
+          "licensed_runs" => 200,
+          "location_id" => 60006382,
+          "output_location_id" => 60006382,
+          "runs" => 1,
+          "start_date" => "2014-07-19T15:47:06Z",
+          "status" => "active"
+        }
+      ]
 
   ## Swagger Source
 
@@ -1457,8 +1563,13 @@ defmodule ESI.API.Corporation do
 
   Observer list of a corporation:
 
-      [%{"last_updated" => "2017-09-19", "observer_id" => 1,
-         "observer_type" => "structure"}]
+      [
+        %{
+          "last_updated" => "2017-09-19",
+          "observer_id" => 1,
+          "observer_type" => "structure"
+        }
+      ]
 
   ## Swagger Source
 
@@ -1497,9 +1608,18 @@ defmodule ESI.API.Corporation do
 
   List of corporation blueprints:
 
-      [%{"item_id" => 1000000010495, "location_flag" => "CorpSAG1",
-         "location_id" => 60014719, "material_efficiency" => 0, "quantity" => 1,
-         "runs" => -1, "time_efficiency" => 0, "type_id" => 691}]
+      [
+        %{
+          "item_id" => 1000000010495,
+          "location_flag" => "CorpSAG1",
+          "location_id" => 60014719,
+          "material_efficiency" => 0,
+          "quantity" => 1,
+          "runs" => -1,
+          "time_efficiency" => 0,
+          "type_id" => 691
+        }
+      ]
 
   ## Swagger Source
 
@@ -1538,16 +1658,32 @@ defmodule ESI.API.Corporation do
 
   List of corporation owned bookmarks:
 
-      [%{"bookmark_id" => 4, "created" => "2016-08-09T11:57:47Z",
-         "creator_id" => 2112625428, "folder_id" => 5,
-         "item" => %{"item_id" => 50006722, "type_id" => 29633},
-         "label" => "Stargate", "location_id" => 30003430,
-         "notes" => "This is a stargate"},
-       %{"bookmark_id" => 5,
-         "coordinates" => %{"x" => -2958928814000, "y" => -338367275823,
-           "z" => 2114538075090}, "created" => "2016-08-09T11:57:47Z",
-         "creator_id" => 2112625428, "folder_id" => 5, "label" => "Random location",
-         "location_id" => 30003430, "notes" => "This is a random location in space"}]
+      [
+        %{
+          "bookmark_id" => 4,
+          "created" => "2016-08-09T11:57:47Z",
+          "creator_id" => 2112625428,
+          "folder_id" => 5,
+          "item" => %{"item_id" => 50006722, "type_id" => 29633},
+          "label" => "Stargate",
+          "location_id" => 30003430,
+          "notes" => "This is a stargate"
+        },
+        %{
+          "bookmark_id" => 5,
+          "coordinates" => %{
+            "x" => -2958928814000,
+            "y" => -338367275823,
+            "z" => 2114538075090
+          },
+          "created" => "2016-08-09T11:57:47Z",
+          "creator_id" => 2112625428,
+          "folder_id" => 5,
+          "label" => "Random location",
+          "location_id" => 30003430,
+          "notes" => "This is a random location in space"
+        }
+      ]
 
   ## Swagger Source
 
@@ -1572,10 +1708,11 @@ defmodule ESI.API.Corporation do
   @typedoc """
   Options for [`Corporation.contracts/2`](#contracts/2).
 
+  - `:page` (DEFAULT: `1`) -- Which page of results to return
   - `:token` -- Access token to use if unable to set a header
   """
   @type contracts_opts :: [contracts_opt]
-  @type contracts_opt :: {:token, nil | String.t}
+  @type contracts_opt :: {:page, nil | integer} | {:token, nil | String.t}
 
 
   @doc """
@@ -1585,16 +1722,28 @@ defmodule ESI.API.Corporation do
 
   A list of contracts:
 
-      [%{"acceptor_id" => 0, "assignee_id" => 0, "availability" => "public",
-         "buyout" => 1.0e10, "contract_id" => 1,
-         "date_accepted" => "2017-06-06T13:12:32Z",
-         "date_completed" => "2017-06-06T13:12:32Z",
-         "date_expired" => "2017-06-13T13:12:32Z",
-         "date_issued" => "2017-06-06T13:12:32Z", "days_to_complete" => 0,
-         "end_location_id" => 60014719, "for_corporation" => true,
-         "issuer_corporation_id" => 456, "issuer_id" => 123, "price" => 1.0e6,
-         "reward" => 0.0, "start_location_id" => 60014719, "status" => "outstanding",
-         "type" => "auction", "volume" => 0.01}]
+      [
+        %{
+          "acceptor_id" => 0,
+          "assignee_id" => 0,
+          "availability" => "public",
+          "buyout" => 10000000000.01,
+          "contract_id" => 1,
+          "date_expired" => "2017-06-13T13:12:32Z",
+          "date_issued" => "2017-06-06T13:12:32Z",
+          "days_to_complete" => 0,
+          "end_location_id" => 60014719,
+          "for_corporation" => true,
+          "issuer_corporation_id" => 456,
+          "issuer_id" => 123,
+          "price" => 1000000.01,
+          "reward" => 0.01,
+          "start_location_id" => 60014719,
+          "status" => "outstanding",
+          "type" => "auction",
+          "volume" => 0.01
+        }
+      ]
 
   ## Swagger Source
 
@@ -1611,7 +1760,7 @@ defmodule ESI.API.Corporation do
     %ESI.Request{
       verb: :get,
       path: "/v1/corporations/#{corporation_id}/contracts/",
-      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -1671,9 +1820,11 @@ defmodule ESI.API.Corporation do
 
   A list of standings:
 
-      [%{"from_id" => 3009841, "from_type" => "agent", "standing" => 0.1},
-       %{"from_id" => 1000061, "from_type" => "npc_corp", "standing" => 0},
-       %{"from_id" => 500003, "from_type" => "faction", "standing" => -1}]
+      [
+        %{"from_id" => 3009841, "from_type" => "agent", "standing" => 0.1},
+        %{"from_id" => 1000061, "from_type" => "npc_corp", "standing" => 0},
+        %{"from_id" => 500003, "from_type" => "faction", "standing" => -1}
+      ]
 
   ## Swagger Source
 
@@ -1711,8 +1862,13 @@ defmodule ESI.API.Corporation do
 
   A list of titles:
 
-      [%{"name" => "Awesome Title", "roles" => ["Hangar_Take_6", "Hangar_Query_2"],
-         "title_id" => 1}]
+      [
+        %{
+          "name" => "Awesome Title",
+          "roles" => ["Hangar_Take_6", "Hangar_Query_2"],
+          "title_id" => 1
+        }
+      ]
 
   ## Swagger Source
 
@@ -1751,12 +1907,22 @@ defmodule ESI.API.Corporation do
 
   A list of customs offices and their settings:
 
-      [%{"alliance_tax_rate" => 0.1, "allow_access_with_standings" => true,
-         "allow_alliance_access" => false, "corporation_tax_rate" => 0.02,
-         "excellent_standing_tax_rate" => 0.05, "good_standing_tax_rate" => 0.2,
-         "neutral_standing_tax_rate" => 0.5, "office_id" => 1000000014530,
-         "reinforce_exit_end" => 1, "reinforce_exit_start" => 23,
-         "standing_level" => "neutral", "system_id" => 30003657}]
+      [
+        %{
+          "alliance_tax_rate" => 0.1,
+          "allow_access_with_standings" => true,
+          "allow_alliance_access" => false,
+          "corporation_tax_rate" => 0.02,
+          "excellent_standing_tax_rate" => 0.05,
+          "good_standing_tax_rate" => 0.2,
+          "neutral_standing_tax_rate" => 0.5,
+          "office_id" => 1000000014530,
+          "reinforce_exit_end" => 1,
+          "reinforce_exit_start" => 23,
+          "standing_level" => "neutral",
+          "system_id" => 30003657
+        }
+      ]
 
   ## Swagger Source
 
@@ -1795,9 +1961,15 @@ defmodule ESI.API.Corporation do
 
   Mining ledger of an observer:
 
-      [%{"character_id" => 95465499, "last_updated" => "2017-09-19",
-         "quantity" => 500, "recorded_corporation_id" => 109299958,
-         "type_id" => 1230}]
+      [
+        %{
+          "character_id" => 95465499,
+          "last_updated" => "2017-09-19",
+          "quantity" => 500,
+          "recorded_corporation_id" => 109299958,
+          "type_id" => 1230
+        }
+      ]
 
   ## Swagger Source
 
@@ -1820,6 +1992,44 @@ defmodule ESI.API.Corporation do
   end
 
   @typedoc """
+  Options for [`Corporation.names/1`](#names/1).
+
+  - `:corporation_ids` (REQUIRED) -- A comma separated list of corporation IDs
+  """
+  @type names_opts :: [names_opt]
+  @type names_opt :: {:corporation_ids, [integer]}
+
+
+  @doc """
+  Resolve a set of corporation IDs to corporation names.
+
+  ## Response Example
+
+  List of id/name associations:
+
+      [%{"corporation_id" => 1000171, "corporation_name" => "Republic University"}]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_corporations_names`
+  - `path` -- `/v2/corporations/names/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Corporation/get_corporations_names)
+
+  """
+  @spec names(opts :: names_opts) :: ESI.Request.t
+  def names(opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v2/corporations/names/",
+      opts_schema: %{corporation_ids: {:query, :required}, datasource: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Corporation.outpost/3`](#outpost/3).
 
   - `:token` -- Access token to use if unable to set a header
@@ -1835,14 +2045,30 @@ defmodule ESI.API.Corporation do
 
   Details about the given outpost:
 
-      %{"coordinates" => %{"x" => -102478848000, "y" => -18310963200,
-          "z" => -9660456960}, "docking_cost_per_ship_volume" => 0,
-        "office_rental_cost" => 100, "owner_id" => 98000002,
-        "reprocessing_efficiency" => 0.5, "reprocessing_station_take" => 0.01,
-        "services" => [%{"discount_per_good_standing" => 10, "minimum_standing" => 0,
-           "owner_id" => 98000002, "service_name" => "Reprocessing Plant",
-           "surcharge_per_bad_standing" => 0}], "standing_owner_id" => 99003581,
-        "system_id" => 30000657, "type_id" => 21644}
+      %{
+        "coordinates" => %{
+          "x" => -102478848000,
+          "y" => -18310963200,
+          "z" => -9660456960
+        },
+        "docking_cost_per_ship_volume" => 0,
+        "office_rental_cost" => 100,
+        "owner_id" => 98000002,
+        "reprocessing_efficiency" => 0.5,
+        "reprocessing_station_take" => 0.01,
+        "services" => [
+          %{
+            "discount_per_good_standing" => 10,
+            "minimum_standing" => 0,
+            "owner_id" => 98000002,
+            "service_name" => "Reprocessing Plant",
+            "surcharge_per_bad_standing" => 0
+          }
+        ],
+        "standing_owner_id" => 99003581,
+        "system_id" => 30000657,
+        "type_id" => 21644
+      }
 
   ## Swagger Source
 
@@ -1860,6 +2086,63 @@ defmodule ESI.API.Corporation do
       verb: :get,
       path: "/v1/corporations/#{corporation_id}/outposts/#{outpost_id}/",
       opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
+  Options for [`Corporation.order_history/2`](#order_history/2).
+
+  - `:page` (DEFAULT: `1`) -- Which page of results to return
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type order_history_opts :: [order_history_opt]
+  @type order_history_opt :: {:page, nil | integer} | {:token, nil | String.t}
+
+
+  @doc """
+  List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past..
+
+  ## Response Example
+
+  Expired and cancelled market orders placed on behalf of a corporation:
+
+      [
+        %{
+          "duration" => 30,
+          "escrow" => 45.6,
+          "is_buy_order" => true,
+          "issued" => "2016-09-03T05:12:25Z",
+          "location_id" => 456,
+          "min_volume" => 1,
+          "order_id" => 123,
+          "price" => 33.3,
+          "range" => "station",
+          "region_id" => 123,
+          "state" => "expired",
+          "type_id" => 456,
+          "volume_remain" => 4422,
+          "volume_total" => 123456,
+          "wallet_division" => 1
+        }
+      ]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_corporations_corporation_id_orders_history`
+  - `path` -- `/v1/corporations/{corporation_id}/orders/history/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Market/get_corporations_corporation_id_orders_history)
+
+  """
+  @spec order_history(corporation_id :: integer, opts :: order_history_opts) :: ESI.Request.t
+  def order_history(corporation_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/corporations/#{corporation_id}/orders/history/",
+      opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end

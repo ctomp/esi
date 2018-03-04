@@ -7,8 +7,16 @@ defmodule ESI.API.Industry do
 
   A list of facilities:
 
-      [%{"facility_id" => 60012544, "owner_id" => 1000126, "region_id" => 10000001,
-         "solar_system_id" => 30000032, "tax" => 0.1, "type_id" => 2502}]
+      [
+        %{
+          "facility_id" => 60012544,
+          "owner_id" => 1000126,
+          "region_id" => 10000001,
+          "solar_system_id" => 30000032,
+          "tax" => 0.1,
+          "type_id" => 2502
+        }
+      ]
 
   ## Swagger Source
 
@@ -37,8 +45,12 @@ defmodule ESI.API.Industry do
 
   A list of cost indicies:
 
-      [%{"cost_indices" => [%{"activity" => "invention",
-            "cost_index" => 0.00480411064973412}], "solar_system_id" => 30011392}]
+      [
+        %{
+          "cost_indices" => [%{"activity" => "invention", "cost_index" => 0.0048}],
+          "solar_system_id" => 30011392
+        }
+      ]
 
   ## Swagger Source
 

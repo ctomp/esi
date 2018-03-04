@@ -39,7 +39,7 @@ defmodule ESI do
       iex> ESI.API.Universe.groups() |> ESI.request! |> length
       1000
       iex> ESI.API.Universe.groups(page: 2) |> ESI.request! |> length
-      284
+      342
 
   Paginating with `stream!`, you don't have to care about `:page`:
 
@@ -49,7 +49,7 @@ defmodule ESI do
   Like any stream, you can use `Enum.to_list/1` to get all the items:
 
       iex> ESI.API.Universe.groups() |> ESI.stream! |> Enum.to_list |> length
-      1284
+      1342
 
   It even works for requests that don't paginate:
 

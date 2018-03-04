@@ -52,7 +52,7 @@ defmodule ESI.API.Alliance do
   This function was generated from the following Swagger operation:
 
   - `operationId` -- `get_alliances_names`
-  - `path` -- `/v1/alliances/names/`
+  - `path` -- `/v2/alliances/names/`
 
   [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances_names)
 
@@ -61,39 +61,9 @@ defmodule ESI.API.Alliance do
   def names(opts \\ []) do
     %ESI.Request{
       verb: :get,
-      path: "/v1/alliances/names/",
+      path: "/v2/alliances/names/",
       opts_schema: %{alliance_ids: {:query, :required}, datasource: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
-    }
-  end
-
-  @doc """
-  Public information about an alliance.
-
-  ## Response Example
-
-  Public data about an alliance:
-
-      %{"alliance_name" => "C C P Alliance", "date_founded" => "2016-06-26T21:00:00Z",
-        "executor_corp" => 98356193, "ticker" => "<C C P>"}
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_alliances_alliance_id`
-  - `path` -- `/v2/alliances/{alliance_id}/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances_alliance_id)
-
-  """
-  @spec alliance(alliance_id :: integer) :: ESI.Request.t
-  def alliance(alliance_id) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v2/alliances/#{alliance_id}/",
-      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
-
     }
   end
 
@@ -104,8 +74,10 @@ defmodule ESI.API.Alliance do
 
   Icon URLs for the given alliance id and server:
 
-      %{"px128x128" => "https://imageserver.eveonline.com/Alliance/503818424_128.png",
-        "px64x64" => "https://imageserver.eveonline.com/Alliance/503818424_64.png"}
+      %{
+        "px128x128" => "https://imageserver.eveonline.com/Alliance/503818424_128.png",
+        "px64x64" => "https://imageserver.eveonline.com/Alliance/503818424_64.png"
+      }
 
   ## Swagger Source
 
@@ -144,8 +116,13 @@ defmodule ESI.API.Alliance do
 
   A list of contacts:
 
-      [%{"contact_id" => 2112625428, "contact_type" => "character",
-         "standing" => 9.9}]
+      [
+        %{
+          "contact_id" => 2112625428,
+          "contact_type" => "character",
+          "standing" => 9.9
+        }
+      ]
 
   ## Swagger Source
 
@@ -191,6 +168,42 @@ defmodule ESI.API.Alliance do
     %ESI.Request{
       verb: :get,
       path: "/v1/alliances/#{alliance_id}/corporations/",
+      opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
+
+    }
+  end
+
+  @doc """
+  Public information about an alliance.
+
+  ## Response Example
+
+  Public data about an alliance:
+
+      %{
+        "creator_corporation_id" => 45678,
+        "creator_id" => 12345,
+        "date_founded" => "2016-06-26T21:00:00Z",
+        "executor_corporation_id" => 98356193,
+        "name" => "C C P Alliance",
+        "ticker" => "<C C P>"
+      }
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_alliances_alliance_id`
+  - `path` -- `/v3/alliances/{alliance_id}/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Alliance/get_alliances_alliance_id)
+
+  """
+  @spec alliance(alliance_id :: integer) :: ESI.Request.t
+  def alliance(alliance_id) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v3/alliances/#{alliance_id}/",
       opts_schema: %{datasource: {:query, :optional}, user_agent: {:query, :optional}},
 
     }

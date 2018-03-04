@@ -7,8 +7,11 @@ defmodule ESI.API.Status do
 
   Server status:
 
-      %{"players" => 12345, "server_version" => "1132976",
-        "start_time" => "2017-01-02T12:34:56Z"}
+      %{
+        "players" => 12345,
+        "server_version" => "1132976",
+        "start_time" => "2017-01-02T12:34:56Z"
+      }
 
   ## Swagger Source
 

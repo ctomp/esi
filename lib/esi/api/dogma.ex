@@ -36,11 +36,17 @@ defmodule ESI.API.Dogma do
 
   Information about a dogma attribute:
 
-      %{"attribute_id" => 20, "default_value" => 1,
+      %{
+        "attribute_id" => 20,
+        "default_value" => 1,
         "description" => "Factor by which topspeed increases.",
-        "display_name" => "Maximum Velocity Bonus", "high_is_good" => true,
-        "icon_id" => 1389, "name" => "speedFactor", "published" => true,
-        "unit_id" => 124}
+        "display_name" => "Maximum Velocity Bonus",
+        "high_is_good" => true,
+        "icon_id" => 1389,
+        "name" => "speedFactor",
+        "published" => true,
+        "unit_id" => 124
+      }
 
   ## Swagger Source
 
@@ -69,10 +75,17 @@ defmodule ESI.API.Dogma do
 
   Information about a dogma effect:
 
-      %{"description" => "Requires a high power slot.",
-        "display_name" => "High power", "effect_category" => 0, "effect_id" => 12,
-        "icon_id" => 293, "name" => "hiPower", "post_expression" => 131,
-        "pre_expression" => 131, "published" => true}
+      %{
+        "description" => "Requires a high power slot.",
+        "display_name" => "High power",
+        "effect_category" => 0,
+        "effect_id" => 12,
+        "icon_id" => 293,
+        "name" => "hiPower",
+        "post_expression" => 131,
+        "pre_expression" => 131,
+        "published" => true
+      }
 
   ## Swagger Source
 

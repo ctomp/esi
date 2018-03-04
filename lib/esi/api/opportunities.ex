@@ -65,9 +65,12 @@ defmodule ESI.API.Opportunities do
 
   Details of an opportunities task:
 
-      %{"description" => "To use station services...",
+      %{
+        "description" => "To use station services...",
         "name" => "Dock in the station",
-        "notification" => "Completed:<br>Docked in a station!", "task_id" => 10}
+        "notification" => "Completed:<br>Docked in a station!",
+        "task_id" => 10
+      }
 
   ## Swagger Source
 
@@ -105,10 +108,14 @@ defmodule ESI.API.Opportunities do
 
   Details of an opportunities group:
 
-      %{"connected_groups" => [100], "description" => "As a capsuleer...",
-        "group_id" => 103, "name" => "Welcome to New Eden",
+      %{
+        "connected_groups" => [100],
+        "description" => "As a capsuleer...",
+        "group_id" => 103,
+        "name" => "Welcome to New Eden",
         "notification" => "Completed:<br>Welcome to New Eden",
-        "required_tasks" => [19]}
+        "required_tasks" => [19]
+      }
 
   ## Swagger Source
 

@@ -16,10 +16,23 @@ defmodule ESI.API.Character do
 
   A list of mail labels and unread counts:
 
-      %{"labels" => [%{"color_hex" => "#660066", "label_id" => 16, "name" => "PINK",
-           "unread_count" => 4},
-         %{"color_hex" => "#ffffff", "label_id" => 17, "name" => "WHITE",
-           "unread_count" => 1}], "total_unread_count" => 5}
+      %{
+        "labels" => [
+          %{
+            "color_hex" => "#660066",
+            "label_id" => 16,
+            "name" => "PINK",
+            "unread_count" => 4
+          },
+          %{
+            "color_hex" => "#ffffff",
+            "label_id" => 17,
+            "name" => "WHITE",
+            "unread_count" => 1
+          }
+        ],
+        "total_unread_count" => 5
+      }
 
   ## Swagger Source
 
@@ -58,16 +71,32 @@ defmodule ESI.API.Character do
 
   A list of bookmarks:
 
-      [%{"bookmark_id" => 4, "created" => "2016-08-09T11:57:47Z",
-         "creator_id" => 2112625428, "folder_id" => 5,
-         "item" => %{"item_id" => 50006722, "type_id" => 29633},
-         "label" => "Stargate", "location_id" => 30003430,
-         "notes" => "This is a stargate"},
-       %{"bookmark_id" => 5,
-         "coordinates" => %{"x" => -2958928814000, "y" => -338367275823,
-           "z" => 2114538075090}, "created" => "2016-08-09T11:57:47Z",
-         "creator_id" => 2112625428, "folder_id" => 5, "label" => "Random location",
-         "location_id" => 30003430, "notes" => "This is a random location in space"}]
+      [
+        %{
+          "bookmark_id" => 4,
+          "created" => "2016-08-09T11:57:47Z",
+          "creator_id" => 2112625428,
+          "folder_id" => 5,
+          "item" => %{"item_id" => 50006722, "type_id" => 29633},
+          "label" => "Stargate",
+          "location_id" => 30003430,
+          "notes" => "This is a stargate"
+        },
+        %{
+          "bookmark_id" => 5,
+          "coordinates" => %{
+            "x" => -2958928814000,
+            "y" => -338367275823,
+            "z" => 2114538075090
+          },
+          "created" => "2016-08-09T11:57:47Z",
+          "creator_id" => 2112625428,
+          "folder_id" => 5,
+          "label" => "Random location",
+          "location_id" => 30003430,
+          "notes" => "This is a random location in space"
+        }
+      ]
 
   ## Swagger Source
 
@@ -108,10 +137,16 @@ defmodule ESI.API.Character do
 
   A list of killmail IDs and hashes:
 
-      [%{"killmail_hash" => "8eef5e8fb6b88fe3407c489df33822b2e3b57a5e",
-         "killmail_id" => 2},
-       %{"killmail_hash" => "b41ccb498ece33d64019f64c0db392aa3aa701fb",
-         "killmail_id" => 1}]
+      [
+        %{
+          "killmail_hash" => "8eef5e8fb6b88fe3407c489df33822b2e3b57a5e",
+          "killmail_id" => 2
+        },
+        %{
+          "killmail_hash" => "b41ccb498ece33d64019f64c0db392aa3aa701fb",
+          "killmail_id" => 1
+        }
+      ]
 
   ## Swagger Source
 
@@ -185,8 +220,13 @@ defmodule ESI.API.Character do
 
   Character corporation, alliance and faction IDs:
 
-      [%{"alliance_id" => 434243723, "character_id" => 95538921,
-         "corporation_id" => 109299958}]
+      [
+        %{
+          "alliance_id" => 434243723,
+          "character_id" => 95538921,
+          "corporation_id" => 109299958
+        }
+      ]
 
   ## Swagger Source
 
@@ -262,8 +302,11 @@ defmodule ESI.API.Character do
 
   Get the current ship type, name and id:
 
-      %{"ship_item_id" => 1000000016991, "ship_name" => "SPACESHIPS!!!",
-        "ship_type_id" => 1233}
+      %{
+        "ship_item_id" => 1000000016991,
+        "ship_name" => "SPACESHIPS!!!",
+        "ship_type_id" => 1233
+      }
 
   ## Swagger Source
 
@@ -301,8 +344,14 @@ defmodule ESI.API.Character do
 
   A list of bids:
 
-      [%{"amount" => 1.23, "bid_id" => 1, "bidder_id" => 123,
-         "date_bid" => "2017-01-01T10:10:10Z"}]
+      [
+        %{
+          "amount" => 1.23,
+          "bid_id" => 1,
+          "bidder_id" => 123,
+          "date_bid" => "2017-01-01T10:10:10Z"
+        }
+      ]
 
   ## Swagger Source
 
@@ -340,10 +389,20 @@ defmodule ESI.API.Character do
 
   A list of chat channels:
 
-      [%{"allowed" => [], "blocked" => [], "channel_id" => -69329950,
-         "comparison_key" => "players'haven", "has_password" => false,
-         "motd" => "<b>Feed pineapples to the cats!</b>", "muted" => [],
-         "name" => "Players' Haven", "operators" => [], "owner_id" => 95578451}]
+      [
+        %{
+          "allowed" => [],
+          "blocked" => [],
+          "channel_id" => -69329950,
+          "comparison_key" => "players'haven",
+          "has_password" => false,
+          "motd" => "<b>Feed pineapples to the cats!</b>",
+          "muted" => [],
+          "name" => "Players' Haven",
+          "operators" => [],
+          "owner_id" => 95578451
+        }
+      ]
 
   ## Swagger Source
 
@@ -360,44 +419,6 @@ defmodule ESI.API.Character do
     %ESI.Request{
       verb: :get,
       path: "/v1/characters/#{character_id}/chat_channels/",
-      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
-  Options for [`Character.online/2`](#online/2).
-
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type online_opts :: [online_opt]
-  @type online_opt :: {:token, nil | String.t}
-
-
-  @doc """
-  Checks if the character is currently online.
-
-  ## Response Example
-
-  Boolean of if the character is currently online:
-
-      true
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_characters_character_id_online`
-  - `path` -- `/v1/characters/{character_id}/online/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Location/get_characters_character_id_online)
-
-  """
-  @spec online(character_id :: integer, opts :: online_opts) :: ESI.Request.t
-  def online(character_id, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v1/characters/#{character_id}/online/",
       opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
@@ -478,6 +499,45 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
+  Options for [`Character.create_cspa/2`](#create_cspa/2).
+
+  - `:characters` (REQUIRED) -- The target characters to calculate the charge for
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type create_cspa_opts :: [create_cspa_opt]
+  @type create_cspa_opt :: {:characters, [nil | integer]} | {:token, nil | String.t}
+
+
+  @doc """
+  Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost.
+
+  ## Response Example
+
+  Aggregate cost of sending a mail from the source character to the target characters, in ISK:
+
+      2950.0
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `post_characters_character_id_cspa`
+  - `path` -- `/v4/characters/{character_id}/cspa/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Character/post_characters_character_id_cspa)
+
+  """
+  @spec create_cspa(character_id :: integer, opts :: create_cspa_opts) :: ESI.Request.t
+  def create_cspa(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :post,
+      path: "/v4/characters/#{character_id}/cspa/",
+      opts_schema: %{characters: {:body, :required}, datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Character.opportunities/2`](#opportunities/2).
 
   - `:token` -- Access token to use if unable to set a header
@@ -531,11 +591,18 @@ defmodule ESI.API.Character do
 
   Full details of a specific event:
 
-      %{"date" => "2016-06-26T21:00:00Z", "duration" => 60, "event_id" => 1386435,
-        "importance" => 1, "owner_id" => 1, "owner_name" => "EVE System",
-        "owner_type" => "eve_server", "response" => "Undecided",
+      %{
+        "date" => "2016-06-26T21:00:00Z",
+        "duration" => 60,
+        "event_id" => 1386435,
+        "importance" => 1,
+        "owner_id" => 1,
+        "owner_name" => "EVE System",
+        "owner_type" => "eve_server",
+        "response" => "Undecided",
         "text" => "o7: The EVE Online Show features latest developer news, fast paced action, community overviews and a lot more with CCP Guard and CCP Mimic. Join the thrilling o7 live broadcast at 20:00 EVE time (=UTC) on <a href=\"http://www.twitch.tv/ccp\">EVE TV</a>. Don't miss it!",
-        "title" => "o7 The EVE Online Show"}
+        "title" => "o7 The EVE Online Show"
+      }
 
   ## Swagger Source
 
@@ -595,6 +662,55 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
+  Options for [`Character.assets/2`](#assets/2).
+
+  - `:page` (DEFAULT: `1`) -- Which page of results to return
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type assets_opts :: [assets_opt]
+  @type assets_opt :: {:page, nil | integer} | {:token, nil | String.t}
+
+
+  @doc """
+  Return a list of the characters assets.
+
+  ## Response Example
+
+  A flat list of the users assets:
+
+      [
+        %{
+          "is_singleton" => true,
+          "item_id" => 1000000016835,
+          "location_flag" => "Hangar",
+          "location_id" => 60002959,
+          "location_type" => "station",
+          "quantity" => 1,
+          "type_id" => 3516
+        }
+      ]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_characters_character_id_assets`
+  - `path` -- `/v3/characters/{character_id}/assets/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Assets/get_characters_character_id_assets)
+
+  """
+  @spec assets(character_id :: integer, opts :: assets_opts) :: ESI.Request.t
+  def assets(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v3/characters/#{character_id}/assets/",
+      opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Character.names/1`](#names/1).
 
   - `:character_ids` (REQUIRED) -- A comma separated list of character IDs
@@ -649,14 +765,26 @@ defmodule ESI.API.Character do
 
   Industry jobs placed by a character:
 
-      [%{"activity_id" => 1, "blueprint_id" => 1015116533326,
-         "blueprint_location_id" => 60006382, "blueprint_type_id" => 2047,
-         "cost" => 118.01, "duration" => 548, "end_date" => "2014-07-19T15:56:14Z",
-         "facility_id" => 60006382, "installer_id" => 498338451,
-         "job_id" => 229136101, "licensed_runs" => 200,
-         "output_location_id" => 60006382, "runs" => 1,
-         "start_date" => "2014-07-19T15:47:06Z", "station_id" => 60006382,
-         "status" => "active"}]
+      [
+        %{
+          "activity_id" => 1,
+          "blueprint_id" => 1015116533326,
+          "blueprint_location_id" => 60006382,
+          "blueprint_type_id" => 2047,
+          "cost" => 118.01,
+          "duration" => 548,
+          "end_date" => "2014-07-19T15:56:14Z",
+          "facility_id" => 60006382,
+          "installer_id" => 498338451,
+          "job_id" => 229136101,
+          "licensed_runs" => 200,
+          "output_location_id" => 60006382,
+          "runs" => 1,
+          "start_date" => "2014-07-19T15:47:06Z",
+          "station_id" => 60006382,
+          "status" => "active"
+        }
+      ]
 
   ## Swagger Source
 
@@ -679,44 +807,6 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
-  Options for [`Character.roles/2`](#roles/2).
-
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type roles_opts :: [roles_opt]
-  @type roles_opt :: {:token, nil | String.t}
-
-
-  @doc """
-  Returns a character's corporation roles.
-
-  ## Response Example
-
-  The character's roles in thier corporation:
-
-      ["Director", "Station_Manager"]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_characters_character_id_roles`
-  - `path` -- `/v1/characters/{character_id}/roles/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Character/get_characters_character_id_roles)
-
-  """
-  @spec roles(character_id :: integer, opts :: roles_opts) :: ESI.Request.t
-  def roles(character_id, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v1/characters/#{character_id}/roles/",
-      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
   Options for [`Character.standings/2`](#standings/2).
 
   - `:token` -- Access token to use if unable to set a header
@@ -732,9 +822,11 @@ defmodule ESI.API.Character do
 
   A list of standings:
 
-      [%{"from_id" => 3009841, "from_type" => "agent", "standing" => 0.1},
-       %{"from_id" => 1000061, "from_type" => "npc_corp", "standing" => 0},
-       %{"from_id" => 500003, "from_type" => "faction", "standing" => -1}]
+      [
+        %{"from_id" => 3009841, "from_type" => "agent", "standing" => 0.1},
+        %{"from_id" => 1000061, "from_type" => "npc_corp", "standing" => 0},
+        %{"from_id" => 500003, "from_type" => "faction", "standing" => -1}
+      ]
 
   ## Swagger Source
 
@@ -772,10 +864,16 @@ defmodule ESI.API.Character do
 
   Faction warfare statistics for a given character:
 
-      %{"enlisted_on" => "2017-10-17T00:00:00Z", "faction_id" => 500001,
+      %{
+        "enlisted_on" => "2017-10-17T00:00:00Z",
+        "faction_id" => 500001,
         "kills" => %{"last_week" => 893, "total" => 684350, "yesterday" => 136},
-        "victory_points" => %{"last_week" => 102640, "total" => 52658260,
-          "yesterday" => 15980}}
+        "victory_points" => %{
+          "last_week" => 102640,
+          "total" => 52658260,
+          "yesterday" => 15980
+        }
+      }
 
   ## Swagger Source
 
@@ -813,12 +911,26 @@ defmodule ESI.API.Character do
 
   List of colonies:
 
-      [%{"last_update" => "2016-11-28T16:42:51Z", "num_pins" => 1,
-         "owner_id" => 90000001, "planet_id" => 40023691, "planet_type" => "plasma",
-         "solar_system_id" => 30000379, "upgrade_level" => 0},
-       %{"last_update" => "2016-11-28T16:41:54Z", "num_pins" => 1,
-         "owner_id" => 90000001, "planet_id" => 40023697, "planet_type" => "barren",
-         "solar_system_id" => 30000379, "upgrade_level" => 0}]
+      [
+        %{
+          "last_update" => "2016-11-28T16:42:51Z",
+          "num_pins" => 1,
+          "owner_id" => 90000001,
+          "planet_id" => 40023691,
+          "planet_type" => "plasma",
+          "solar_system_id" => 30000379,
+          "upgrade_level" => 0
+        },
+        %{
+          "last_update" => "2016-11-28T16:41:54Z",
+          "num_pins" => 1,
+          "owner_id" => 90000001,
+          "planet_id" => 40023697,
+          "planet_type" => "barren",
+          "solar_system_id" => 30000379,
+          "upgrade_level" => 0
+        }
+      ]
 
   ## Swagger Source
 
@@ -836,86 +948,6 @@ defmodule ESI.API.Character do
       verb: :get,
       path: "/v1/characters/#{character_id}/planets/",
       opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
-  Options for [`Character.create_cspa/2`](#create_cspa/2).
-
-  - `:characters` (REQUIRED) -- The target characters to calculate the charge for
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type create_cspa_opts :: [create_cspa_opt]
-  @type create_cspa_opt :: {:characters, [characters: [integer]]} | {:token, nil | String.t}
-
-
-  @doc """
-  Takes a source character ID in the url and a set of target character ID's in the body, returns a CSPA charge cost.
-
-  ## Response Example
-
-  Aggregate cost of sending a mail from the source character to the target characters, in ISK hundredths:
-
-      %{"cost" => 295000}
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `post_characters_character_id_cspa`
-  - `path` -- `/v3/characters/{character_id}/cspa/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Character/post_characters_character_id_cspa)
-
-  """
-  @spec create_cspa(character_id :: integer, opts :: create_cspa_opts) :: ESI.Request.t
-  def create_cspa(character_id, opts \\ []) do
-    %ESI.Request{
-      verb: :post,
-      path: "/v3/characters/#{character_id}/cspa/",
-      opts_schema: %{characters: {:body, :required}, datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
-  Options for [`Character.assets/2`](#assets/2).
-
-  - `:page` (DEFAULT: `1`) -- Which page of results to return
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type assets_opts :: [assets_opt]
-  @type assets_opt :: {:page, nil | integer} | {:token, nil | String.t}
-
-
-  @doc """
-  Return a list of the characters assets.
-
-  ## Response Example
-
-  A flat list of the users assets:
-
-      [%{"is_singleton" => true, "item_id" => 1000000016835,
-         "location_flag" => "Hangar", "location_id" => 60002959,
-         "location_type" => "station", "type_id" => 3516}]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_characters_character_id_assets`
-  - `path` -- `/v2/characters/{character_id}/assets/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Assets/get_characters_character_id_assets)
-
-  """
-  @spec assets(character_id :: integer, opts :: assets_opts) :: ESI.Request.t
-  def assets(character_id, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v2/characters/#{character_id}/assets/",
-      opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -965,9 +997,16 @@ defmodule ESI.API.Character do
 
   Public data for the given character:
 
-      %{"ancestry_id" => 19, "birthday" => "2015-03-24T11:37:00Z",
-        "bloodline_id" => 3, "corporation_id" => 109299958, "description" => "",
-        "gender" => "male", "name" => "CCP Bartender", "race_id" => 2}
+      %{
+        "ancestry_id" => 19,
+        "birthday" => "2015-03-24T11:37:00Z",
+        "bloodline_id" => 3,
+        "corporation_id" => 109299958,
+        "description" => "",
+        "gender" => "male",
+        "name" => "CCP Bartender",
+        "race_id" => 2
+      }
 
   ## Swagger Source
 
@@ -1005,8 +1044,10 @@ defmodule ESI.API.Character do
 
   List of attendees:
 
-      [%{"character_id" => 2112625428, "event_response" => "accepted"},
-       %{"character_id" => 95465499, "event_response" => "tentative"}]
+      [
+        %{"character_id" => 2112625428, "event_response" => "accepted"},
+        %{"character_id" => 95465499, "event_response" => "tentative"}
+      ]
 
   ## Swagger Source
 
@@ -1029,46 +1070,6 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
-  Options for [`Character.wallet_journal/2`](#wallet_journal/2).
-
-  - `:from_id` -- Only show journal entries happened before the transaction referenced by this id
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type wallet_journal_opts :: [wallet_journal_opt]
-  @type wallet_journal_opt :: {:from_id, nil | integer} | {:token, nil | String.t}
-
-
-  @doc """
-  Retrieve character wallet journal.
-
-  ## Response Example
-
-  Journal entries:
-
-      [%{"date" => "2016-10-24T09:00:00Z", "ref_id" => 1234567890,
-         "ref_type" => "player_trading"}]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_characters_character_id_wallet_journal`
-  - `path` -- `/v2/characters/{character_id}/wallet/journal/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Wallet/get_characters_character_id_wallet_journal)
-
-  """
-  @spec wallet_journal(character_id :: integer, opts :: wallet_journal_opts) :: ESI.Request.t
-  def wallet_journal(character_id, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v2/characters/#{character_id}/wallet/journal/",
-      opts_schema: %{datasource: {:query, :optional}, from_id: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
   Options for [`Character.agents_research/2`](#agents_research/2).
 
   - `:token` -- Access token to use if unable to set a header
@@ -1084,9 +1085,15 @@ defmodule ESI.API.Character do
 
   A list of agents research information:
 
-      [%{"agent_id" => 3009358, "points_per_day" => 53.5346162146776,
-         "remainder_points" => 53604.0634303189, "skill_type_id" => 11450,
-         "started_at" => "2017-03-23T14:47:00Z"}]
+      [
+        %{
+          "agent_id" => 3009358,
+          "points_per_day" => 53.5346162146776,
+          "remainder_points" => 53604.0634303189,
+          "skill_type_id" => 11450,
+          "started_at" => "2017-03-23T14:47:00Z"
+        }
+      ]
 
   ## Swagger Source
 
@@ -1124,9 +1131,15 @@ defmodule ESI.API.Character do
 
   A list of contact notifications:
 
-      [%{"message" => "hello friend :3", "notification_id" => 1,
-         "send_date" => "2017-08-16T10:08:00Z", "sender_character_id" => 95465499,
-         "standing_level" => 1.5}]
+      [
+        %{
+          "message" => "hello friend :3",
+          "notification_id" => 1,
+          "send_date" => "2017-08-16T10:08:00Z",
+          "sender_character_id" => 95465499,
+          "standing_level" => 1.5
+        }
+      ]
 
   ## Swagger Source
 
@@ -1149,38 +1162,58 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
-  Options for [`Character.delete_contacts/2`](#delete_contacts/2).
+  Options for [`Character.stats/2`](#stats/2).
 
-  - `:contact_ids` (REQUIRED) -- A list of contacts to delete
   - `:token` -- Access token to use if unable to set a header
   """
-  @type delete_contacts_opts :: [delete_contacts_opt]
-  @type delete_contacts_opt :: {:contact_ids, [nil | integer]} | {:token, nil | String.t}
+  @type stats_opts :: [stats_opt]
+  @type stats_opt :: {:token, nil | String.t}
 
 
   @doc """
-  Bulk delete contacts.
+  Returns aggregate yearly stats for a character.
 
   ## Response Example
 
-  No example available.
+  Character stats:
+
+      [
+        %{
+          "character" => %{
+            "days_of_activity" => 365,
+            "minutes" => 1000000,
+            "sessions_started" => 500
+          },
+          "combat" => %{"kills_low_sec" => 42},
+          "year" => 2014
+        },
+        %{
+          "character" => %{
+            "days_of_activity" => 365,
+            "minutes" => 1000000,
+            "sessions_started" => 500
+          },
+          "combat" => %{"kills_null_sec" => 1337},
+          "year" => 2015
+        }
+      ]
 
   ## Swagger Source
 
   This function was generated from the following Swagger operation:
 
-  - `operationId` -- `delete_characters_character_id_contacts`
-  - `path` -- `/v1/characters/{character_id}/contacts/`
+  - `operationId` -- `get_characters_character_id_stats`
+  - `path` -- `/v2/characters/{character_id}/stats/`
 
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Contacts/delete_characters_character_id_contacts)
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Character/get_characters_character_id_stats)
 
   """
-  @spec delete_contacts(character_id :: integer, opts :: delete_contacts_opts) :: ESI.Request.t
-  def delete_contacts(character_id, opts \\ []) do
+  @spec stats(character_id :: integer, opts :: stats_opts) :: ESI.Request.t
+  def stats(character_id, opts \\ []) do
     %ESI.Request{
-      verb: :delete,
-      path: "/v1/characters/#{character_id}/contacts/",
-      opts_schema: %{contact_ids: {:body, :required}, datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      verb: :get,
+      path: "/v2/characters/#{character_id}/stats/",
+      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -1202,8 +1235,15 @@ defmodule ESI.API.Character do
 
   A list of contacts:
 
-      [%{"contact_id" => 123, "contact_type" => "character", "is_blocked" => true,
-         "is_watched" => true, "standing" => 9.9}]
+      [
+        %{
+          "contact_id" => 123,
+          "contact_type" => "character",
+          "is_blocked" => true,
+          "is_watched" => true,
+          "standing" => 9.9
+        }
+      ]
 
   ## Swagger Source
 
@@ -1323,9 +1363,11 @@ defmodule ESI.API.Character do
 
   Jump activation and fatigue information:
 
-      %{"jump_fatigue_expire_date" => "2017-07-06T15:47:00Z",
+      %{
+        "jump_fatigue_expire_date" => "2017-07-06T15:47:00Z",
         "last_jump_date" => "2017-07-05T15:47:00Z",
-        "last_update_date" => "2017-07-05T15:42:00Z"}
+        "last_update_date" => "2017-07-05T15:42:00Z"
+      }
 
   ## Swagger Source
 
@@ -1365,10 +1407,19 @@ defmodule ESI.API.Character do
 
   The requested mail:
 
-      [%{"from" => 90000001, "is_read" => true, "labels" => [3], "mail_id" => 7,
-         "recipients" => [%{"recipient_id" => 90000002,
-            "recipient_type" => "character"}], "subject" => "Title for EVE Mail",
-         "timestamp" => "2015-09-30T16:07:00Z"}]
+      [
+        %{
+          "from" => 90000001,
+          "is_read" => true,
+          "labels" => [3],
+          "mail_id" => 7,
+          "recipients" => [
+            %{"recipient_id" => 90000002, "recipient_type" => "character"}
+          ],
+          "subject" => "Title for EVE Mail",
+          "timestamp" => "2015-09-30T16:07:00Z"
+        }
+      ]
 
   ## Swagger Source
 
@@ -1436,10 +1487,19 @@ defmodule ESI.API.Character do
 
   Corporation history for the given character:
 
-      [%{"corporation_id" => 90000001, "is_deleted" => true, "record_id" => 500,
-         "start_date" => "2016-06-26T20:00:00Z"},
-       %{"corporation_id" => 90000002, "record_id" => 501,
-         "start_date" => "2016-07-26T20:00:00Z"}]
+      [
+        %{
+          "corporation_id" => 90000001,
+          "is_deleted" => true,
+          "record_id" => 500,
+          "start_date" => "2016-06-26T20:00:00Z"
+        },
+        %{
+          "corporation_id" => 90000002,
+          "record_id" => 501,
+          "start_date" => "2016-07-26T20:00:00Z"
+        }
+      ]
 
   ## Swagger Source
 
@@ -1464,11 +1524,11 @@ defmodule ESI.API.Character do
   @typedoc """
   Options for [`Character.create_mail_labels/2`](#create_mail_labels/2).
 
-  - `:label` -- Label to create
+  - `:label` (REQUIRED) -- Label to create
   - `:token` -- Access token to use if unable to set a header
   """
   @type create_mail_labels_opts :: [create_mail_labels_opt]
-  @type create_mail_labels_opt :: {:label, nil | [color: nil | :"#0000fe" | :"#006634" | :"#0099ff" | :"#00ff33" | :"#01ffff" | :"#349800" | :"#660066" | :"#666666" | :"#999999" | :"#99ffff" | :"#9a0000" | :"#ccff9a" | :"#e6e6e6" | :"#fe0000" | :"#ff6600" | :"#ffff01" | :"#ffffcd" | :"#ffffff", name: String.t]} | {:token, nil | String.t}
+  @type create_mail_labels_opt :: {:label, [color: nil | :"#0000fe" | :"#006634" | :"#0099ff" | :"#00ff33" | :"#01ffff" | :"#349800" | :"#660066" | :"#666666" | :"#999999" | :"#99ffff" | :"#9a0000" | :"#ccff9a" | :"#e6e6e6" | :"#fe0000" | :"#ff6600" | :"#ffff01" | :"#ffffcd" | :"#ffffff", name: String.t]} | {:token, nil | String.t}
 
 
   @doc """
@@ -1495,51 +1555,7 @@ defmodule ESI.API.Character do
     %ESI.Request{
       verb: :post,
       path: "/v2/characters/#{character_id}/mail/labels/",
-      opts_schema: %{datasource: {:query, :optional}, label: {:body, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
-  Options for [`Character.search/2`](#search/2).
-
-  - `:categories` (REQUIRED) -- Type of entities to search for
-  - `:language` (DEFAULT: `:"en-us"`) -- Language to use in the response
-  - `:search` (REQUIRED) -- The string to search on
-  - `:strict` (DEFAULT: `false`) -- Whether the search should be a strict match
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type search_opts :: [search_opt]
-  @type search_opt :: {:categories, [:agent | :alliance | :character | :constellation | :corporation | :faction | :inventorytype | :region | :solarsystem | :station | :structure | :wormhole]} | {:language, nil | :de | :"en-us" | :fr | :ja | :ru | :zh} | {:search, String.t} | {:strict, nil | boolean} | {:token, nil | String.t}
-
-
-  @doc """
-  Search for entities that match a given sub-string..
-
-  ## Response Example
-
-  A list of search results:
-
-      %{"solarsystem" => [30002510],
-        "station" => [60004588, 60004594, 60005725, 60009106, 60012721, 60012724,
-         60012727]}
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_characters_character_id_search`
-  - `path` -- `/v2/characters/{character_id}/search/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Search/get_characters_character_id_search)
-
-  """
-  @spec search(character_id :: integer, opts :: search_opts) :: ESI.Request.t
-  def search(character_id, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v2/characters/#{character_id}/search/",
-      opts_schema: %{categories: {:query, :required}, datasource: {:query, :optional}, language: {:query, :optional}, search: {:query, :required}, strict: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts_schema: %{datasource: {:query, :optional}, label: {:body, :required}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -1560,10 +1576,17 @@ defmodule ESI.API.Character do
 
   Returns your recent notifications:
 
-      [%{"is_read" => true, "notification_id" => 1, "sender_id" => 1000132,
-         "sender_type" => "corporation",
-         "text" => "amount: 3731016.4000000004\\nitemID: 1024881021663\\npayout: 1\\n",
-         "timestamp" => "2017-08-16T10:08:00Z", "type" => "InsurancePayoutMsg"}]
+      [
+        %{
+          "is_read" => true,
+          "notification_id" => 1,
+          "sender_id" => 1000132,
+          "sender_type" => "corporation",
+          "text" => "amount: 3731016.4000000004\\nitemID: 1024881021663\\npayout: 1\\n",
+          "timestamp" => "2017-08-16T10:08:00Z",
+          "type" => "InsurancePayoutMsg"
+        }
+      ]
 
   ## Swagger Source
 
@@ -1625,6 +1648,60 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
+  Options for [`Character.skills/2`](#skills/2).
+
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type skills_opts :: [skills_opt]
+  @type skills_opt :: {:token, nil | String.t}
+
+
+  @doc """
+  List all trained skills for the given character.
+
+  ## Response Example
+
+  Known skills for the character:
+
+      %{
+        "skills" => [
+          %{
+            "active_skill_level" => 3,
+            "skill_id" => 1,
+            "skillpoints_in_skill" => 10000,
+            "trained_skill_level" => 4
+          },
+          %{
+            "active_skill_level" => 1,
+            "skill_id" => 2,
+            "skillpoints_in_skill" => 10000,
+            "trained_skill_level" => 1
+          }
+        ],
+        "total_sp" => 20000
+      }
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_characters_character_id_skills`
+  - `path` -- `/v4/characters/{character_id}/skills/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Skills/get_characters_character_id_skills)
+
+  """
+  @spec skills(character_id :: integer, opts :: skills_opts) :: ESI.Request.t
+  def skills(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v4/characters/#{character_id}/skills/",
+      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Character.planet/3`](#planet/3).
 
   - `:token` -- Access token to use if unable to set a header
@@ -1640,17 +1717,40 @@ defmodule ESI.API.Character do
 
   Colony layout:
 
-      %{"links" => [%{"destination_pin_id" => 1000000017022, "link_level" => 0,
-           "source_pin_id" => 1000000017021}],
-        "pins" => [%{"is_running" => true, "latitude" => 1.55087844973,
-           "longitude" => 0.717145933308, "pin_id" => 1000000017021,
-           "type_id" => 2254},
-         %{"is_running" => true, "latitude" => 1.53360639935,
-           "longitude" => 0.709775584394, "pin_id" => 1000000017022,
-           "type_id" => 2256}],
-        "routes" => [%{"content_type_id" => 2393,
-           "destination_pin_id" => 1000000017030, "quantity" => 20, "route_id" => 4,
-           "source_pin_id" => 1000000017029}]}
+      %{
+        "links" => [
+          %{
+            "destination_pin_id" => 1000000017022,
+            "link_level" => 0,
+            "source_pin_id" => 1000000017021
+          }
+        ],
+        "pins" => [
+          %{
+            "is_running" => true,
+            "latitude" => 1.55087844973,
+            "longitude" => 0.717145933308,
+            "pin_id" => 1000000017021,
+            "type_id" => 2254
+          },
+          %{
+            "is_running" => true,
+            "latitude" => 1.53360639935,
+            "longitude" => 0.709775584394,
+            "pin_id" => 1000000017022,
+            "type_id" => 2256
+          }
+        ],
+        "routes" => [
+          %{
+            "content_type_id" => 2393,
+            "destination_pin_id" => 1000000017030,
+            "quantity" => 20,
+            "route_id" => 4,
+            "source_pin_id" => 1000000017029
+          }
+        ]
+      }
 
   ## Swagger Source
 
@@ -1689,9 +1789,18 @@ defmodule ESI.API.Character do
 
   A list of blueprints:
 
-      [%{"item_id" => 1000000010495, "location_flag" => "Hangar",
-         "location_id" => 60014719, "material_efficiency" => 0, "quantity" => 1,
-         "runs" => -1, "time_efficiency" => 0, "type_id" => 691}]
+      [
+        %{
+          "item_id" => 1000000010495,
+          "location_flag" => "Hangar",
+          "location_id" => 60014719,
+          "material_efficiency" => 0,
+          "quantity" => 1,
+          "runs" => -1,
+          "time_efficiency" => 0,
+          "type_id" => 691
+        }
+      ]
 
   ## Swagger Source
 
@@ -1714,6 +1823,43 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
+  Options for [`Character.delete_contacts/2`](#delete_contacts/2).
+
+  - `:contact_ids` (REQUIRED) -- A list of contacts to delete
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type delete_contacts_opts :: [delete_contacts_opt]
+  @type delete_contacts_opt :: {:contact_ids, [integer]} | {:token, nil | String.t}
+
+
+  @doc """
+  Bulk delete contacts.
+
+  ## Response Example
+
+  No example available.
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `delete_characters_character_id_contacts`
+  - `path` -- `/v2/characters/{character_id}/contacts/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Contacts/delete_characters_character_id_contacts)
+
+  """
+  @spec delete_contacts(character_id :: integer, opts :: delete_contacts_opts) :: ESI.Request.t
+  def delete_contacts(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :delete,
+      path: "/v2/characters/#{character_id}/contacts/",
+      opts_schema: %{contact_ids: {:query, :required}, datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Character.attributes/2`](#attributes/2).
 
   - `:token` -- Access token to use if unable to set a header
@@ -1729,8 +1875,13 @@ defmodule ESI.API.Character do
 
   Attributes of a character:
 
-      %{"charisma" => 20, "intelligence" => 20, "memory" => 20, "perception" => 20,
-        "willpower" => 20}
+      %{
+        "charisma" => 20,
+        "intelligence" => 20,
+        "memory" => 20,
+        "perception" => 20,
+        "willpower" => 20
+      }
 
   ## Swagger Source
 
@@ -1747,49 +1898,6 @@ defmodule ESI.API.Character do
     %ESI.Request{
       verb: :get,
       path: "/v1/characters/#{character_id}/attributes/",
-      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
-  Options for [`Character.clones/2`](#clones/2).
-
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type clones_opts :: [clones_opt]
-  @type clones_opt :: {:token, nil | String.t}
-
-
-  @doc """
-  A list of the character's clones.
-
-  ## Response Example
-
-  Clone information for the given character:
-
-      %{"home_location" => %{"location_id" => 1021348135816,
-          "location_type" => "structure"},
-        "jump_clones" => [%{"implants" => [22118], "location_id" => 60003463,
-           "location_type" => "station"},
-         %{"implants" => [], "location_id" => 1021348135816,
-           "location_type" => "structure"}]}
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_characters_character_id_clones`
-  - `path` -- `/v2/characters/{character_id}/clones/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Clones/get_characters_character_id_clones)
-
-  """
-  @spec clones(character_id :: integer, opts :: clones_opts) :: ESI.Request.t
-  def clones(character_id, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v2/characters/#{character_id}/clones/",
       opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
@@ -1851,10 +1959,20 @@ defmodule ESI.API.Character do
 
   Wallet transactions:
 
-      [%{"client_id" => 54321, "date" => "2016-10-24T09:00:00Z", "is_buy" => true,
-         "is_personal" => true, "journal_ref_id" => 67890, "location_id" => 60014719,
-         "quantity" => 1, "transaction_id" => 1234567890, "type_id" => 587,
-         "unit_price" => 1}]
+      [
+        %{
+          "client_id" => 54321,
+          "date" => "2016-10-24T09:00:00Z",
+          "is_buy" => true,
+          "is_personal" => true,
+          "journal_ref_id" => 67890,
+          "location_id" => 60014719,
+          "quantity" => 1,
+          "transaction_id" => 1234567890,
+          "type_id" => 587,
+          "unit_price" => 1
+        }
+      ]
 
   ## Swagger Source
 
@@ -1872,6 +1990,57 @@ defmodule ESI.API.Character do
       verb: :get,
       path: "/v1/characters/#{character_id}/wallet/transactions/",
       opts_schema: %{datasource: {:query, :optional}, from_id: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
+  Options for [`Character.clones/2`](#clones/2).
+
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type clones_opts :: [clones_opt]
+  @type clones_opt :: {:token, nil | String.t}
+
+
+  @doc """
+  A list of the character's clones.
+
+  ## Response Example
+
+  Clone information for the given character:
+
+      %{
+        "home_location" => %{
+          "location_id" => 1021348135816,
+          "location_type" => "structure"
+        },
+        "jump_clones" => [
+          %{
+            "implants" => [22118],
+            "jump_clone_id" => 12345,
+            "location_id" => 60003463,
+            "location_type" => "station"
+          }
+        ]
+      }
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_characters_character_id_clones`
+  - `path` -- `/v3/characters/{character_id}/clones/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Clones/get_characters_character_id_clones)
+
+  """
+  @spec clones(character_id :: integer, opts :: clones_opts) :: ESI.Request.t
+  def clones(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v3/characters/#{character_id}/clones/",
+      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -1915,6 +2084,51 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
+  Options for [`Character.wallet_journal/2`](#wallet_journal/2).
+
+  - `:from_id` -- Only show journal entries happened before the transaction referenced by this id
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type wallet_journal_opts :: [wallet_journal_opt]
+  @type wallet_journal_opt :: {:from_id, nil | integer} | {:token, nil | String.t}
+
+
+  @doc """
+  Retrieve character wallet journal.
+
+  ## Response Example
+
+  Journal entries:
+
+      [
+        %{
+          "date" => "2016-10-24T09:00:00Z",
+          "ref_id" => 1234567890,
+          "ref_type" => "player_trading"
+        }
+      ]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_characters_character_id_wallet_journal`
+  - `path` -- `/v3/characters/{character_id}/wallet/journal/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Wallet/get_characters_character_id_wallet_journal)
+
+  """
+  @spec wallet_journal(character_id :: integer, opts :: wallet_journal_opts) :: ESI.Request.t
+  def wallet_journal(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v3/characters/#{character_id}/wallet/journal/",
+      opts_schema: %{datasource: {:query, :optional}, from_id: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Character.fleet/2`](#fleet/2).
 
   - `:token` -- Access token to use if unable to set a header
@@ -1930,8 +2144,12 @@ defmodule ESI.API.Character do
 
   Details about the character's fleet:
 
-      %{"fleet_id" => 1234567890, "role" => "fleet_commander", "squad_id" => -1,
-        "wing_id" => -1}
+      %{
+        "fleet_id" => 1234567890,
+        "role" => "fleet_commander",
+        "squad_id" => -1,
+        "wing_id" => -1
+      }
 
   ## Swagger Source
 
@@ -1953,6 +2171,91 @@ defmodule ESI.API.Character do
     }
   end
 
+  @typedoc """
+  Options for [`Character.search/2`](#search/2).
+
+  - `:categories` (REQUIRED) -- Type of entities to search for
+  - `:language` (DEFAULT: `:"en-us"`) -- Language to use in the response
+  - `:search` (REQUIRED) -- The string to search on
+  - `:strict` (DEFAULT: `false`) -- Whether the search should be a strict match
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type search_opts :: [search_opt]
+  @type search_opt :: {:categories, [:agent | :alliance | :character | :constellation | :corporation | :faction | :inventory_type | :region | :solar_system | :station | :structure]} | {:language, nil | :de | :"en-us" | :fr | :ja | :ru | :zh} | {:search, String.t} | {:strict, nil | boolean} | {:token, nil | String.t}
+
+
+  @doc """
+  Search for entities that match a given sub-string..
+
+  ## Response Example
+
+  A list of search results:
+
+      %{
+        "solar_system" => [30002510],
+        "station" => [60004588, 60004594, 60005725, 60009106, 60012721, 60012724,
+         60012727]
+      }
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_characters_character_id_search`
+  - `path` -- `/v3/characters/{character_id}/search/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Search/get_characters_character_id_search)
+
+  """
+  @spec search(character_id :: integer, opts :: search_opts) :: ESI.Request.t
+  def search(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v3/characters/#{character_id}/search/",
+      opts_schema: %{categories: {:query, :required}, datasource: {:query, :optional}, language: {:query, :optional}, search: {:query, :required}, strict: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
+  Options for [`Character.create_asset_locations/2`](#create_asset_locations/2).
+
+  - `:item_ids` (REQUIRED) -- A list of item ids
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type create_asset_locations_opts :: [create_asset_locations_opt]
+  @type create_asset_locations_opt :: {:item_ids, [nil | integer]} | {:token, nil | String.t}
+
+
+  @doc """
+  Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0).
+
+  ## Response Example
+
+  List of asset locations:
+
+      [%{"item_id" => 12345, "position" => %{"x" => 1.2, "y" => 2.3, "z" => -3.4}}]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `post_characters_character_id_assets_locations`
+  - `path` -- `/v2/characters/{character_id}/assets/locations/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Assets/post_characters_character_id_assets_locations)
+
+  """
+  @spec create_asset_locations(character_id :: integer, opts :: create_asset_locations_opts) :: ESI.Request.t
+  def create_asset_locations(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :post,
+      path: "/v2/characters/#{character_id}/assets/locations/",
+      opts_schema: %{datasource: {:query, :optional}, item_ids: {:body, :required}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
   @doc """
   Get portrait urls for a character.
 
@@ -1960,10 +2263,12 @@ defmodule ESI.API.Character do
 
   Public data for the given character:
 
-      %{"px128x128" => "https://imageserver.eveonline.com/Character/95465499_128.jpg",
+      %{
+        "px128x128" => "https://imageserver.eveonline.com/Character/95465499_128.jpg",
         "px256x256" => "https://imageserver.eveonline.com/Character/95465499_256.jpg",
         "px512x512" => "https://imageserver.eveonline.com/Character/95465499_512.jpg",
-        "px64x64" => "https://imageserver.eveonline.com/Character/95465499_64.jpg"}
+        "px64x64" => "https://imageserver.eveonline.com/Character/95465499_64.jpg"
+      }
 
   ## Swagger Source
 
@@ -1986,6 +2291,44 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
+  Options for [`Character.roles/2`](#roles/2).
+
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type roles_opts :: [roles_opt]
+  @type roles_opt :: {:token, nil | String.t}
+
+
+  @doc """
+  Returns a character's corporation roles.
+
+  ## Response Example
+
+  The character's roles in thier corporation:
+
+      %{"roles" => ["Director", "Station_Manager"]}
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_characters_character_id_roles`
+  - `path` -- `/v2/characters/{character_id}/roles/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Character/get_characters_character_id_roles)
+
+  """
+  @spec roles(character_id :: integer, opts :: roles_opts) :: ESI.Request.t
+  def roles(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v2/characters/#{character_id}/roles/",
+      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Character.skillqueue/2`](#skillqueue/2).
 
   - `:token` -- Access token to use if unable to set a header
@@ -2001,15 +2344,29 @@ defmodule ESI.API.Character do
 
   The current skill queue, sorted ascending by finishing time:
 
-      [%{"finish_date" => "2016-06-29T10:47:00Z", "finished_level" => 3,
-         "queue_position" => 0, "skill_id" => 1,
-         "start_date" => "2016-06-29T10:46:00Z"},
-       %{"finish_date" => "2016-07-15T10:47:00Z", "finished_level" => 4,
-         "queue_position" => 1, "skill_id" => 1,
-         "start_date" => "2016-06-29T10:47:00Z"},
-       %{"finish_date" => "2016-08-30T10:47:00Z", "finished_level" => 2,
-         "queue_position" => 2, "skill_id" => 2,
-         "start_date" => "2016-07-15T10:47:00Z"}]
+      [
+        %{
+          "finish_date" => "2016-06-29T10:47:00Z",
+          "finished_level" => 3,
+          "queue_position" => 0,
+          "skill_id" => 1,
+          "start_date" => "2016-06-29T10:46:00Z"
+        },
+        %{
+          "finish_date" => "2016-07-15T10:47:00Z",
+          "finished_level" => 4,
+          "queue_position" => 1,
+          "skill_id" => 1,
+          "start_date" => "2016-06-29T10:47:00Z"
+        },
+        %{
+          "finish_date" => "2016-08-30T10:47:00Z",
+          "finished_level" => 2,
+          "queue_position" => 2,
+          "skill_id" => 2,
+          "start_date" => "2016-07-15T10:47:00Z"
+        }
+      ]
 
   ## Swagger Source
 
@@ -2085,12 +2442,26 @@ defmodule ESI.API.Character do
 
   Market orders placed by a character:
 
-      [%{"account_id" => 1000, "duration" => 30, "escrow" => 45.6,
-         "is_buy_order" => true, "is_corp" => false,
-         "issued" => "2016-09-03T05:12:25Z", "location_id" => 456, "min_volume" => 1,
-         "order_id" => 123, "price" => 33.3, "range" => "station", "region_id" => 123,
-         "state" => "open", "type_id" => 456, "volume_remain" => 4422,
-         "volume_total" => 123456}]
+      [
+        %{
+          "account_id" => 1000,
+          "duration" => 30,
+          "escrow" => 45.6,
+          "is_buy_order" => true,
+          "is_corp" => false,
+          "issued" => "2016-09-03T05:12:25Z",
+          "location_id" => 456,
+          "min_volume" => 1,
+          "order_id" => 123,
+          "price" => 33.3,
+          "range" => "station",
+          "region_id" => 123,
+          "state" => "open",
+          "type_id" => 456,
+          "volume_remain" => 4422,
+          "volume_total" => 123456
+        }
+      ]
 
   ## Swagger Source
 
@@ -2128,8 +2499,15 @@ defmodule ESI.API.Character do
 
   A list of items in this contract:
 
-      [%{"is_included" => true, "is_singleton" => false, "quantity" => 1,
-         "record_id" => 123456, "type_id" => 587}]
+      [
+        %{
+          "is_included" => true,
+          "is_singleton" => false,
+          "quantity" => 1,
+          "record_id" => 123456,
+          "type_id" => 587
+        }
+      ]
 
   ## Swagger Source
 
@@ -2167,11 +2545,28 @@ defmodule ESI.API.Character do
 
   A list of medals:
 
-      [%{"corporation_id" => 98000001, "date" => "2017-03-16T15:01:45Z",
-         "description" => "For 33 corp!",
-         "graphics" => [%{"color" => -1, "graphic" => "gallente.1_1", "layer" => 0,
-            "part" => 1}], "issuer_id" => 2112000002, "medal_id" => 3,
-         "reason" => "Thanks!", "status" => "private", "title" => "33 tester medal"}]
+      [
+        %{
+          "corporation_id" => 98000001,
+          "date" => "2017-03-16T15:01:45Z",
+          "description" => "For 33 corp!",
+          "graphics" => [
+            %{"color" => -1, "graphic" => "caldari.1_1", "layer" => 0, "part" => 1},
+            %{
+              "color" => -330271,
+              "graphic" => "caldari.1_2",
+              "layer" => 1,
+              "part" => 1
+            },
+            %{"color" => -1, "graphic" => "compass.1_2", "layer" => 0, "part" => 2}
+          ],
+          "issuer_id" => 2112000002,
+          "medal_id" => 3,
+          "reason" => "Thanks!",
+          "status" => "private",
+          "title" => "33 tester medal"
+        }
+      ]
 
   ## Swagger Source
 
@@ -2194,45 +2589,6 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
-  Options for [`Character.create_asset_locations/2`](#create_asset_locations/2).
-
-  - `:item_ids` (REQUIRED) -- A list of item ids
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type create_asset_locations_opts :: [create_asset_locations_opt]
-  @type create_asset_locations_opt :: {:item_ids, [nil | integer]} | {:token, nil | String.t}
-
-
-  @doc """
-  Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0).
-
-  ## Response Example
-
-  List of asset locations:
-
-      [%{"item_id" => 12345, "x" => 1.2, "y" => 2.3, "z" => -3.4}]
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `post_characters_character_id_assets_locations`
-  - `path` -- `/v1/characters/{character_id}/assets/locations/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Assets/post_characters_character_id_assets_locations)
-
-  """
-  @spec create_asset_locations(character_id :: integer, opts :: create_asset_locations_opts) :: ESI.Request.t
-  def create_asset_locations(character_id, opts \\ []) do
-    %ESI.Request{
-      verb: :post,
-      path: "/v1/characters/#{character_id}/assets/locations/",
-      opts_schema: %{datasource: {:query, :optional}, item_ids: {:body, :required}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
   Options for [`Character.mining/2`](#mining/2).
 
   - `:page` (DEFAULT: `1`) -- Which page of results to return
@@ -2249,10 +2605,20 @@ defmodule ESI.API.Character do
 
   Mining ledger of a character:
 
-      [%{"date" => "2017-09-19", "quantity" => 7004, "solar_system_id" => 30003707,
-         "type_id" => 17471},
-       %{"date" => "2017-09-18", "quantity" => 5199, "solar_system_id" => 30003707,
-         "type_id" => 17471}]
+      [
+        %{
+          "date" => "2017-09-19",
+          "quantity" => 7004,
+          "solar_system_id" => 30003707,
+          "type_id" => 17471
+        },
+        %{
+          "date" => "2017-09-18",
+          "quantity" => 5199,
+          "solar_system_id" => 30003707,
+          "type_id" => 17471
+        }
+      ]
 
   ## Swagger Source
 
@@ -2275,12 +2641,56 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
-  Options for [`Character.contracts/2`](#contracts/2).
+  Options for [`Character.online/2`](#online/2).
 
   - `:token` -- Access token to use if unable to set a header
   """
+  @type online_opts :: [online_opt]
+  @type online_opt :: {:token, nil | String.t}
+
+
+  @doc """
+  Checks if the character is currently online.
+
+  ## Response Example
+
+  Object describing the character's online status:
+
+      %{
+        "last_login" => "2017-01-02T03:04:05Z",
+        "last_logout" => "2017-01-02T04:05:06Z",
+        "logins" => 9001,
+        "online" => true
+      }
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_characters_character_id_online`
+  - `path` -- `/v2/characters/{character_id}/online/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Location/get_characters_character_id_online)
+
+  """
+  @spec online(character_id :: integer, opts :: online_opts) :: ESI.Request.t
+  def online(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v2/characters/#{character_id}/online/",
+      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
+  Options for [`Character.contracts/2`](#contracts/2).
+
+  - `:page` (DEFAULT: `1`) -- Which page of results to return
+  - `:token` -- Access token to use if unable to set a header
+  """
   @type contracts_opts :: [contracts_opt]
-  @type contracts_opt :: {:token, nil | String.t}
+  @type contracts_opt :: {:page, nil | integer} | {:token, nil | String.t}
 
 
   @doc """
@@ -2290,16 +2700,30 @@ defmodule ESI.API.Character do
 
   A list of contracts:
 
-      [%{"acceptor_id" => 0, "assignee_id" => 0, "availability" => "public",
-         "buyout" => 1.0e10, "contract_id" => 1,
-         "date_accepted" => "2017-06-06T13:12:32Z",
-         "date_completed" => "2017-06-06T13:12:32Z",
-         "date_expired" => "2017-06-13T13:12:32Z",
-         "date_issued" => "2017-06-06T13:12:32Z", "days_to_complete" => 0,
-         "end_location_id" => 60014719, "for_corporation" => true,
-         "issuer_corporation_id" => 456, "issuer_id" => 123, "price" => 1.0e6,
-         "reward" => 0.0, "start_location_id" => 60014719, "status" => "outstanding",
-         "type" => "auction", "volume" => 0.01}]
+      [
+        %{
+          "acceptor_id" => 0,
+          "assignee_id" => 0,
+          "availability" => "public",
+          "buyout" => 10000000000.01,
+          "contract_id" => 1,
+          "date_accepted" => "2017-06-06T13:12:32Z",
+          "date_completed" => "2017-06-06T13:12:32Z",
+          "date_expired" => "2017-06-13T13:12:32Z",
+          "date_issued" => "2017-06-06T13:12:32Z",
+          "days_to_complete" => 0,
+          "end_location_id" => 60014719,
+          "for_corporation" => true,
+          "issuer_corporation_id" => 456,
+          "issuer_id" => 123,
+          "price" => 1000000.01,
+          "reward" => 0.01,
+          "start_location_id" => 60014719,
+          "status" => "outstanding",
+          "type" => "auction",
+          "volume" => 0.01
+        }
+      ]
 
   ## Swagger Source
 
@@ -2316,7 +2740,64 @@ defmodule ESI.API.Character do
     %ESI.Request{
       verb: :get,
       path: "/v1/characters/#{character_id}/contracts/",
-      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
+  Options for [`Character.order_history/2`](#order_history/2).
+
+  - `:page` (DEFAULT: `1`) -- Which page of results to return
+  - `:token` -- Access token to use if unable to set a header
+  """
+  @type order_history_opts :: [order_history_opt]
+  @type order_history_opt :: {:page, nil | integer} | {:token, nil | String.t}
+
+
+  @doc """
+  List cancelled and expired market orders placed by a character up to 90 days in the past..
+
+  ## Response Example
+
+  Expired and cancelled market orders placed by a character:
+
+      [
+        %{
+          "duration" => 30,
+          "escrow" => 45.6,
+          "is_buy_order" => true,
+          "is_corporation" => false,
+          "issued" => "2016-09-03T05:12:25Z",
+          "location_id" => 456,
+          "min_volume" => 1,
+          "order_id" => 123,
+          "price" => 33.3,
+          "range" => "station",
+          "region_id" => 123,
+          "state" => "expired",
+          "type_id" => 456,
+          "volume_remain" => 4422,
+          "volume_total" => 123456
+        }
+      ]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_characters_character_id_orders_history`
+  - `path` -- `/v1/characters/{character_id}/orders/history/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Market/get_characters_character_id_orders_history)
+
+  """
+  @spec order_history(character_id :: integer, opts :: order_history_opts) :: ESI.Request.t
+  def order_history(character_id, opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/characters/#{character_id}/orders/history/",
+      opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -2360,47 +2841,6 @@ defmodule ESI.API.Character do
   end
 
   @typedoc """
-  Options for [`Character.skills/2`](#skills/2).
-
-  - `:token` -- Access token to use if unable to set a header
-  """
-  @type skills_opts :: [skills_opt]
-  @type skills_opt :: {:token, nil | String.t}
-
-
-  @doc """
-  List all trained skills for the given character.
-
-  ## Response Example
-
-  Known skills for the character:
-
-      %{"skills" => [%{"current_skill_level" => 1, "skill_id" => 1,
-           "skillpoints_in_skill" => 10000},
-         %{"current_skill_level" => 1, "skill_id" => 2,
-           "skillpoints_in_skill" => 10000}], "total_sp" => 20000}
-
-  ## Swagger Source
-
-  This function was generated from the following Swagger operation:
-
-  - `operationId` -- `get_characters_character_id_skills`
-  - `path` -- `/v3/characters/{character_id}/skills/`
-
-  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Skills/get_characters_character_id_skills)
-
-  """
-  @spec skills(character_id :: integer, opts :: skills_opts) :: ESI.Request.t
-  def skills(character_id, opts \\ []) do
-    %ESI.Request{
-      verb: :get,
-      path: "/v3/characters/#{character_id}/skills/",
-      opts_schema: %{datasource: {:query, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
-      opts: Map.new(opts),
-    }
-  end
-
-  @typedoc """
   Options for [`Character.fittings/2`](#fittings/2).
 
   - `:token` -- Access token to use if unable to set a header
@@ -2416,9 +2856,15 @@ defmodule ESI.API.Character do
 
   A list of fittings:
 
-      [%{"description" => "Awesome Vindi fitting", "fitting_id" => 1,
-         "items" => [%{"flag" => 12, "quantity" => 1, "type_id" => 1234}],
-         "name" => "Best Vindicator", "ship_type_id" => 123}]
+      [
+        %{
+          "description" => "Awesome Vindi fitting",
+          "fitting_id" => 1,
+          "items" => [%{"flag" => 12, "quantity" => 1, "type_id" => 1234}],
+          "name" => "Best Vindicator",
+          "ship_type_id" => 123
+        }
+      ]
 
   ## Swagger Source
 
@@ -2443,11 +2889,11 @@ defmodule ESI.API.Character do
   @typedoc """
   Options for [`Character.create_fittings/2`](#create_fittings/2).
 
-  - `:fitting` -- Details about the new fitting
+  - `:fitting` (REQUIRED) -- Details about the new fitting
   - `:token` -- Access token to use if unable to set a header
   """
   @type create_fittings_opts :: [create_fittings_opt]
-  @type create_fittings_opt :: {:fitting, nil | [description: String.t, items: [[flag: integer, quantity: integer, type_id: integer]], name: String.t, ship_type_id: integer]} | {:token, nil | String.t}
+  @type create_fittings_opt :: {:fitting, [description: String.t, items: [[flag: integer, quantity: integer, type_id: integer]], name: String.t, ship_type_id: integer]} | {:token, nil | String.t}
 
 
   @doc """
@@ -2474,7 +2920,7 @@ defmodule ESI.API.Character do
     %ESI.Request{
       verb: :post,
       path: "/v1/characters/#{character_id}/fittings/",
-      opts_schema: %{datasource: {:query, :optional}, fitting: {:body, :optional}, token: {:query, :optional}, user_agent: {:query, :optional}},
+      opts_schema: %{datasource: {:query, :optional}, fitting: {:body, :required}, token: {:query, :optional}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end
@@ -2496,9 +2942,15 @@ defmodule ESI.API.Character do
 
   A collection of event summaries:
 
-      [%{"event_date" => "2016-06-26T20:00:00Z", "event_id" => 1386435,
-         "event_response" => "accepted", "importance" => 0,
-         "title" => "o7 The EVE Online Show"}]
+      [
+        %{
+          "event_date" => "2016-06-26T20:00:00Z",
+          "event_id" => 1386435,
+          "event_response" => "accepted",
+          "importance" => 0,
+          "title" => "o7 The EVE Online Show"
+        }
+      ]
 
   ## Swagger Source
 
@@ -2610,8 +3062,14 @@ defmodule ESI.API.Character do
 
   Contents of a mail:
 
-      %{"body" => "blah blah blah", "from" => 90000001, "labels" => [2, 32],
-        "read" => true, "subject" => "test", "timestamp" => "2015-09-30T16:07:00Z"}
+      %{
+        "body" => "blah blah blah",
+        "from" => 90000001,
+        "labels" => [2, 32],
+        "read" => true,
+        "subject" => "test",
+        "timestamp" => "2015-09-30T16:07:00Z"
+      }
 
   ## Swagger Source
 

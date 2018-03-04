@@ -44,9 +44,9 @@ defmodule ESI.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:hackney, "~> 1.6"},
-      {:poison, "~> 2.0"},
-      {:ex_doc, "~> 0.14", only: :dev, runtime: false}
+      {:hackney, "~> 1.11.0"},
+      {:poison, "~> 3.1.0"},
+      {:ex_doc, "~> 0.18.1", only: :dev, runtime: false}
     ]
   end
 
@@ -55,7 +55,7 @@ defmodule ESI.Mixfile do
       files: ["lib", "mix.exs", "README.md", "LICENSE"],
       maintainers: ["Bruce Williams", "Brian O'Grady"],
       licenses: ["MIT"],
-      links: %{"GitHub": "https://eveonline.com/bruce/esi"}
+      links: %{GitHub: "https://eveonline.com/bruce/esi"}
     ]
   end
 end

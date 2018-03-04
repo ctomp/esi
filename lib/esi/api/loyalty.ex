@@ -7,11 +7,25 @@ defmodule ESI.API.Loyalty do
 
   A list of offers:
 
-      [%{"isk_cost" => 0, "lp_cost" => 100, "offer_id" => 1, "quantity" => 1,
-         "required_items" => [], "type_id" => 123},
-       %{"isk_cost" => 1000, "lp_cost" => 100, "offer_id" => 2, "quantity" => 10,
-         "required_items" => [%{"quantity" => 10, "type_id" => 1234}],
-         "type_id" => 1235}]
+      [
+        %{
+          "ak_cost" => 35000,
+          "isk_cost" => 0,
+          "lp_cost" => 100,
+          "offer_id" => 1,
+          "quantity" => 1,
+          "required_items" => [],
+          "type_id" => 123
+        },
+        %{
+          "isk_cost" => 1000,
+          "lp_cost" => 100,
+          "offer_id" => 2,
+          "quantity" => 10,
+          "required_items" => [%{"quantity" => 10, "type_id" => 1234}],
+          "type_id" => 1235
+        }
+      ]
 
   ## Swagger Source
 

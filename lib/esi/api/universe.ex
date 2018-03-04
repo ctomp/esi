@@ -1,6 +1,52 @@
 defmodule ESI.API.Universe do
 
   @typedoc """
+  Options for [`Universe.ancestries/1`](#ancestries/1).
+
+  - `:language` (DEFAULT: `:"en-us"`) -- Language to use in the response
+  """
+  @type ancestries_opts :: [ancestries_opt]
+  @type ancestries_opt :: {:language, nil | :de | :"en-us" | :fr | :ja | :ru | :zh}
+
+
+  @doc """
+  Get all character ancestries.
+
+  ## Response Example
+
+  A list of ancestries:
+
+      [
+        %{
+          "bloodline_id" => 1,
+          "description" => "Acutely aware of the small population...",
+          "id" => 12,
+          "name" => "Tube Child",
+          "short_description" => "Manufactured citizens of the State."
+        }
+      ]
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `get_universe_ancestries`
+  - `path` -- `/v1/universe/ancestries/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Universe/get_universe_ancestries)
+
+  """
+  @spec ancestries(opts :: ancestries_opts) :: ESI.Request.t
+  def ancestries(opts \\ []) do
+    %ESI.Request{
+      verb: :get,
+      path: "/v1/universe/ancestries/",
+      opts_schema: %{datasource: {:query, :optional}, language: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
   Options for [`Universe.category/2`](#category/2).
 
   - `:language` (DEFAULT: `:"en-us"`) -- Language to use in the response
@@ -16,8 +62,12 @@ defmodule ESI.API.Universe do
 
   Information about an item category:
 
-      %{"category_id" => 6, "groups" => [25, 26, 27], "name" => "Ship",
-        "published" => true}
+      %{
+        "category_id" => 6,
+        "groups" => [25, 26, 27],
+        "name" => "Ship",
+        "published" => true
+      }
 
   ## Swagger Source
 
@@ -55,8 +105,13 @@ defmodule ESI.API.Universe do
 
   Information about a type:
 
-      %{"description" => "The Rifter is a...", "group_id" => 25, "name" => "Rifter",
-        "published" => true, "type_id" => 587}
+      %{
+        "description" => "The Rifter is a...",
+        "group_id" => 25,
+        "name" => "Rifter",
+        "published" => true,
+        "type_id" => 587
+      }
 
   ## Swagger Source
 
@@ -85,11 +140,14 @@ defmodule ESI.API.Universe do
 
   Information about a stargate:
 
-      %{"destination" => %{"stargate_id" => 50000056, "system_id" => 30000001},
+      %{
+        "destination" => %{"stargate_id" => 50000056, "system_id" => 30000001},
         "name" => "Stargate (Tanoo)",
-        "position" => %{"x" => -101092761600, "y" => 5279539200,
-          "z" => 1550503403520}, "stargate_id" => 50000342, "system_id" => 30000003,
-        "type_id" => 29624}
+        "position" => %{"x" => -101092761600, "y" => 5279539200, "z" => 1550503403520},
+        "stargate_id" => 50000342,
+        "system_id" => 30000003,
+        "type_id" => 29624
+      }
 
   ## Swagger Source
 
@@ -118,10 +176,16 @@ defmodule ESI.API.Universe do
 
   Information about a star:
 
-      %{"age" => 9398686722, "luminosity" => 0.06615000218153,
-        "name" => "BKG-Q2 - Star", "radius" => 346600000,
-        "solar_system_id" => 30004333, "spectral_class" => "K2 V",
-        "temperature" => 3953, "type_id" => 45033}
+      %{
+        "age" => 9398686722,
+        "luminosity" => 0.06615000218153,
+        "name" => "BKG-Q2 - Star",
+        "radius" => 346600000,
+        "solar_system_id" => 30004333,
+        "spectral_class" => "K2 V",
+        "temperature" => 3953,
+        "type_id" => 45033
+      }
 
   ## Swagger Source
 
@@ -237,8 +301,10 @@ defmodule ESI.API.Universe do
 
   Information about a graphic:
 
-      %{"graphic_file" => "res:/dx9/model/worldobject/planet/moon.red",
-        "graphic_id" => 10}
+      %{
+        "graphic_file" => "res:/dx9/model/worldobject/planet/moon.red",
+        "graphic_id" => 10
+      }
 
   ## Swagger Source
 
@@ -305,10 +371,21 @@ defmodule ESI.API.Universe do
 
   A list of bloodlines:
 
-      [%{"bloodline_id" => 1, "charisma" => 6, "corporation_id" => 1000006,
-         "description" => "The Deteis are regarded as ...", "intelligence" => 7,
-         "memory" => 7, "name" => "Deteis", "perception" => 5, "race_id" => 1,
-         "ship_type_id" => 601, "willpower" => 5}]
+      [
+        %{
+          "bloodline_id" => 1,
+          "charisma" => 6,
+          "corporation_id" => 1000006,
+          "description" => "The Deteis are regarded as ...",
+          "intelligence" => 7,
+          "memory" => 7,
+          "name" => "Deteis",
+          "perception" => 5,
+          "race_id" => 1,
+          "ship_type_id" => 601,
+          "willpower" => 5
+        }
+      ]
 
   ## Swagger Source
 
@@ -346,13 +423,24 @@ defmodule ESI.API.Universe do
 
   Information about a solar system:
 
-      %{"constellation_id" => 20000001, "name" => "Akpivem",
-        "planets" => [%{"moons" => [40000042], "planet_id" => 40000041},
-         %{"planet_id" => 40000043}],
-        "position" => %{"x" => -91174141133075340, "y" => 43938227486247170,
-          "z" => -56482824383339900}, "security_class" => "B",
-        "security_status" => 0.8462923765182495, "star_id" => 40000040,
-        "stargates" => [50000342], "system_id" => 30000003}
+      %{
+        "constellation_id" => 20000001,
+        "name" => "Akpivem",
+        "planets" => [
+          %{"moons" => [40000042], "planet_id" => 40000041},
+          %{"planet_id" => 40000043}
+        ],
+        "position" => %{
+          "x" => -91174141133075340,
+          "y" => 43938227486247170,
+          "z" => -56482824383339900
+        },
+        "security_class" => "B",
+        "security_status" => 0.8462923765182495,
+        "star_id" => 40000040,
+        "stargates" => [50000342],
+        "system_id" => 30000003
+      }
 
   ## Swagger Source
 
@@ -419,9 +507,13 @@ defmodule ESI.API.Universe do
 
   Information about a planet:
 
-      %{"name" => "Akpivem III", "planet_id" => 40000046,
-        "position" => %{"x" => -189226344497, "y" => 9901605317,
-          "z" => -254852632979}, "system_id" => 30000003, "type_id" => 13}
+      %{
+        "name" => "Akpivem III",
+        "planet_id" => 40000046,
+        "position" => %{"x" => -189226344497, "y" => 9901605317, "z" => -254852632979},
+        "system_id" => 30000003,
+        "type_id" => 13
+      }
 
   ## Swagger Source
 
@@ -459,8 +551,10 @@ defmodule ESI.API.Universe do
 
   List of id/name associations for a set of ID's. All ID's must resolve to a name, or nothing will be returned.:
 
-      [%{"category" => "character", "id" => 95465499, "name" => "CCP Bartender"},
-       %{"category" => "solar_system", "id" => 30000142, "name" => "Jita"}]
+      [
+        %{"category" => "character", "id" => 95465499, "name" => "CCP Bartender"},
+        %{"category" => "solar_system", "id" => 30000142, "name" => "Jita"}
+      ]
 
   ## Swagger Source
 
@@ -498,9 +592,12 @@ defmodule ESI.API.Universe do
 
   Information about a region:
 
-      %{"constellations" => [20000302, 20000303],
+      %{
+        "constellations" => [20000302, 20000303],
         "description" => "It has long been an established fact of civilization...",
-        "name" => "Metropolis", "region_id" => 10000042}
+        "name" => "Metropolis",
+        "region_id" => 10000042
+      }
 
   ## Swagger Source
 
@@ -529,16 +626,22 @@ defmodule ESI.API.Universe do
 
   Information about a station:
 
-      %{"max_dockable_ship_volume" => 50000000,
+      %{
+        "max_dockable_ship_volume" => 50000000,
         "name" => "Jakanerva III - Moon 15 - Prompt Delivery Storage",
-        "office_rental_cost" => 10000, "owner" => 1000003,
-        "position" => %{"x" => 165632286720, "y" => 2771804160,
-          "z" => -2455331266560}, "race_id" => 1, "reprocessing_efficiency" => 0.5,
+        "office_rental_cost" => 10000,
+        "owner" => 1000003,
+        "position" => %{"x" => 165632286720, "y" => 2771804160, "z" => -2455331266560},
+        "race_id" => 1,
+        "reprocessing_efficiency" => 0.5,
         "reprocessing_stations_take" => 0.05,
         "services" => ["courier-missions", "reprocessing-plant", "market",
          "repair-facilities", "fitting", "news", "storage", "insurance", "docking",
          "office-rental", "loyalty-point-store", "navy-offices"],
-        "station_id" => 60000277, "system_id" => 30000148, "type_id" => 1531}
+        "station_id" => 60000277,
+        "system_id" => 30000148,
+        "type_id" => 1531
+      }
 
   ## Swagger Source
 
@@ -596,9 +699,12 @@ defmodule ESI.API.Universe do
 
   Information about a moon:
 
-      %{"moon_id" => 40000042, "name" => "Akpivem I - Moon 1",
+      %{
+        "moon_id" => 40000042,
+        "name" => "Akpivem I - Moon 1",
         "position" => %{"x" => 58605102008, "y" => -3066616285, "z" => -55193617920},
-        "system_id" => 30000003}
+        "system_id" => 30000003
+      }
 
   ## Swagger Source
 
@@ -636,9 +742,14 @@ defmodule ESI.API.Universe do
 
   A list of character races:
 
-      [%{"alliance_id" => 500001,
-         "description" => "Founded on the tenets of patriotism and hard work...",
-         "name" => "Caldari", "race_id" => 1}]
+      [
+        %{
+          "alliance_id" => 500001,
+          "description" => "Founded on the tenets of patriotism and hard work...",
+          "name" => "Caldari",
+          "race_id" => 1
+        }
+      ]
 
   ## Swagger Source
 
@@ -676,8 +787,13 @@ defmodule ESI.API.Universe do
 
   Information about an item group:
 
-      %{"category_id" => 6, "group_id" => 25, "name" => "Frigate",
-        "published" => true, "types" => [587, 586, 585]}
+      %{
+        "category_id" => 6,
+        "group_id" => 25,
+        "name" => "Frigate",
+        "published" => true,
+        "types" => [587, 586, 585]
+      }
 
   ## Swagger Source
 
@@ -715,10 +831,19 @@ defmodule ESI.API.Universe do
 
   A list of factions:
 
-      [%{"corporation_id" => 456, "description" => "blah blah", "faction_id" => 1,
-         "is_unique" => true, "name" => "Faction", "size_factor" => 1.0,
-         "solar_system_id" => 123, "station_count" => 1000,
-         "station_system_count" => 100}]
+      [
+        %{
+          "corporation_id" => 456,
+          "description" => "blah blah",
+          "faction_id" => 1,
+          "is_unique" => true,
+          "name" => "Faction",
+          "size_factor" => 1.0,
+          "solar_system_id" => 123,
+          "station_count" => 1000,
+          "station_system_count" => 100
+        }
+      ]
 
   ## Swagger Source
 
@@ -785,10 +910,17 @@ defmodule ESI.API.Universe do
 
   Information about a constellation:
 
-      %{"constellation_id" => 20000009, "name" => "Mekashtad",
-        "position" => %{"x" => 67796138757472320, "y" => -70591121348560960,
-          "z" => -59587016159270070}, "region_id" => 10000001,
-        "systems" => [20000302, 20000303]}
+      %{
+        "constellation_id" => 20000009,
+        "name" => "Mekashtad",
+        "position" => %{
+          "x" => 67796138757472320,
+          "y" => -70591121348560960,
+          "z" => -59587016159270070
+        },
+        "region_id" => 10000001,
+        "systems" => [20000302, 20000303]
+      }
 
   ## Swagger Source
 
@@ -884,8 +1016,14 @@ defmodule ESI.API.Universe do
 
   A list of systems and number of ship, pod and NPC kills:
 
-      [%{"npc_kills" => 0, "pod_kills" => 24, "ship_kills" => 42,
-         "system_id" => 30002410}]
+      [
+        %{
+          "npc_kills" => 0,
+          "pod_kills" => 24,
+          "ship_kills" => 42,
+          "system_id" => 30002410
+        }
+      ]
 
   ## Swagger Source
 
@@ -970,6 +1108,51 @@ defmodule ESI.API.Universe do
       verb: :get,
       path: "/v1/universe/groups/",
       opts_schema: %{datasource: {:query, :optional}, page: {:query, :optional}, user_agent: {:query, :optional}},
+      opts: Map.new(opts),
+    }
+  end
+
+  @typedoc """
+  Options for [`Universe.create_ids/1`](#create_ids/1).
+
+  - `:language` (DEFAULT: `:"en-us"`) -- Language to use in the response
+  - `:names` (REQUIRED) -- The names to resolve
+  """
+  @type create_ids_opts :: [create_ids_opt]
+  @type create_ids_opt :: {:language, nil | :de | :"en-us" | :fr | :ja | :ru | :zh} | {:names, [nil | String.t]}
+
+
+  @doc """
+  Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours..
+
+  ## Response Example
+
+  List of id/name associations for a set of names divided by category. Any name passed in that did not have a match will be ommitted.:
+
+      %{
+        "characters" => [
+          %{"id" => 95465499, "name" => "CCP Bartender"},
+          %{"id" => 2112625428, "name" => "CCP Zoetrope"}
+        ],
+        "systems" => [%{"id" => 30000142, "name" => "Jita"}]
+      }
+
+  ## Swagger Source
+
+  This function was generated from the following Swagger operation:
+
+  - `operationId` -- `post_universe_ids`
+  - `path` -- `/v1/universe/ids/`
+
+  [View on ESI Site](https://esi.tech.ccp.is/latest/#!/Universe/post_universe_ids)
+
+  """
+  @spec create_ids(opts :: create_ids_opts) :: ESI.Request.t
+  def create_ids(opts \\ []) do
+    %ESI.Request{
+      verb: :post,
+      path: "/v1/universe/ids/",
+      opts_schema: %{datasource: {:query, :optional}, language: {:query, :optional}, names: {:body, :required}, user_agent: {:query, :optional}},
       opts: Map.new(opts),
     }
   end

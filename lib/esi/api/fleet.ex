@@ -89,8 +89,12 @@ defmodule ESI.API.Fleet do
 
   Details about a fleet:
 
-      %{"is_free_move" => false, "is_registered" => false,
-        "is_voice_enabled" => false, "motd" => "This is an <b>awesome</b> fleet!"}
+      %{
+        "is_free_move" => false,
+        "is_registered" => false,
+        "is_voice_enabled" => false,
+        "motd" => "This is an <b>awesome</b> fleet!"
+      }
 
   ## Swagger Source
 
@@ -312,8 +316,13 @@ defmodule ESI.API.Fleet do
 
   A list of fleet wings:
 
-      [%{"id" => 2073711261968, "name" => "Wing 1",
-         "squads" => [%{"id" => 3129411261968, "name" => "Squad 1"}]}]
+      [
+        %{
+          "id" => 2073711261968,
+          "name" => "Wing 1",
+          "squads" => [%{"id" => 3129411261968, "name" => "Squad 1"}]
+        }
+      ]
 
   ## Swagger Source
 
@@ -390,11 +399,20 @@ defmodule ESI.API.Fleet do
 
   A list of fleet members:
 
-      [%{"character_id" => 93265215, "join_time" => "2016-04-29T12:34:56Z",
-         "role" => "squad_commander", "role_name" => "Squad Commander (Boss)",
-         "ship_type_id" => 33328, "solar_system_id" => 30003729,
-         "squad_id" => 3129411261968, "station_id" => 61000180,
-         "takes_fleet_warp" => true, "wing_id" => 2073711261968}]
+      [
+        %{
+          "character_id" => 93265215,
+          "join_time" => "2016-04-29T12:34:56Z",
+          "role" => "squad_commander",
+          "role_name" => "Squad Commander (Boss)",
+          "ship_type_id" => 33328,
+          "solar_system_id" => 30003729,
+          "squad_id" => 3129411261968,
+          "station_id" => 61000180,
+          "takes_fleet_warp" => true,
+          "wing_id" => 2073711261968
+        }
+      ]
 
   ## Swagger Source
 

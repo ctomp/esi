@@ -16,8 +16,12 @@ defmodule ESI.API.Insurance do
 
   A list of insurance levels for all ship types:
 
-      [%{"levels" => [%{"cost" => 10.01, "name" => "Basic", "payout" => 20.01}],
-         "type_id" => 1}]
+      [
+        %{
+          "levels" => [%{"cost" => 10.01, "name" => "Basic", "payout" => 20.01}],
+          "type_id" => 1
+        }
+      ]
 
   ## Swagger Source
 
